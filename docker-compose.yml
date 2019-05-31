@@ -33,8 +33,9 @@ services:
       - traefik.port=80
       - traefik.enable=true
       - traefik.backend.healthcheck.hostname=admin.adminafk.fr
-      - traefik.backend.healthcheck.path=/health
+      - traefik.backend.healthcheck.path=/admin/
       - traefik.backend.healthcheck.intervals=10s
+      - traefik.weight=50
     volumes:
       - ./personnal-website/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
       - ./personnal-website/nginx/log/error.log:/var/log/nginx/error.log
@@ -44,7 +45,6 @@ services:
     networks:
       - proxy
 
-
   personnal-website-frontend:
     build: ./personnal-website/frontend/
     container_name: personnal-website-frontend
@@ -52,7 +52,6 @@ services:
       - personnal-website-frontend_static:/opt/services/personnal-website/frontend/static
     networks:
       - proxy
-
 
   personnal-website-backend:
     build: ./personnal-website/backend/
@@ -72,6 +71,39 @@ services:
       - proxy
     env_file:
       - ./personnal-website/backend/prod.env
+
+
+  bookstack:
+    image: linuxserver/bookstack
+    container_name: bookstack
+    restart: always
+    depends_on:
+      - reverse-proxy
+      - bookstack_db
+    labels:
+      - traefik.backend=bookstack
+      - traefik.frontend.rule=Host:wiki.adminafk.fr
+      - traefik.network=proxy
+      - traefik.port=443
+      - traefik.protocol=https
+      - traefik.enable=true
+      - traefik.backend.healthcheck.hostname=wiki.adminafk.fr
+      - traefik.backend.healthcheck.path=/login
+      - traefik.backend.healthcheck.intervals=10s
+      - traefik.weight=10
+    networks:
+      - proxy
+    env_file:
+        - ./bookstack/bookstack.env
+
+  bookstack_db:
+    image: linuxserver/mariadb
+    container_name: bookstack_db
+    restart: always
+    networks:
+      - proxy
+    env_file:
+        - ./bookstack/bookstack_db.env
 
 
 networks:

@@ -7,21 +7,22 @@ This is my personnal-docker-config, it will be depreciated when I will do my per
 # Description
 
 - Reverse proxy : Traefik
-- Logrotate : *incoming*
-- Fail2ban : *incoming*
 - Monitoring : *incoming*
-- Personnal-website
+- Personnal-website : homemade (https://ludovic-ortega.adminafk.fr)
 	- server : Nginx
-	- frontend : [link](https://github.com/M0NsTeRRR/Personnal-website/tree/master/frontend)
-	- backend : [link](https://github.com/M0NsTeRRR/Personnal-website/tree/master/backend)
+	- frontend : [Github repository link](https://github.com/M0NsTeRRR/Personnal-website/tree/master/frontend)
+	- backend : [Github repository link](https://github.com/M0NsTeRRR/Personnal-website/tree/master/backend)
 - Mailserver : *incoming*
-- Wiki : *incoming*
+- Wiki : Bookstack (https://wiki.adminafk.fr)
 
 # Configuration
 
-- personnal-website
+- Personnal-website
 	- `chmod 600 traefik/acme.json traefik/access.log traefik/traefik.log personnal-website/nginx/log/access.log personnal-website/nginx/log/error.log`
-	- fill backend/prod.env
+	- fill `backend/prod.env` (template : backend/prod.env.example)
+- Wiki
+	- fill `bookstack/bookstack.env` (template : bookstack/bookstack.env.example)
+	- fill `bookstack/bookstack_db.env` (template : bookstack/bookstack_db.env.example)
 
 # Launch
 
