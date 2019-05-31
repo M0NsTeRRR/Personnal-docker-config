@@ -27,7 +27,7 @@ RUN npm install
 RUN npm run-script build
 
 # create static directory
-RUN mkdir -p /opt/services/personnal-website/frontend/static/
+RUN mkdir -p /opt/services/frontend/static/
 
 # copy dist files in static directory
-RUN mv ./dist/* /opt/services/personnal-website/frontend/static/
+RUN mv ./dist/* /opt/services/frontend/static/

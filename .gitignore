@@ -1,6 +1,2 @@
 
-personnal-website/backend/prod\.env
-
-bookstack/bookstack\.env
-
-bookstack/bookstack_db\.env
+*.env

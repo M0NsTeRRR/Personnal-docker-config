@@ -14,19 +14,22 @@ This is my personnal-docker-config, it will be depreciated when I will do my per
 	- backend : [Github repository link](https://github.com/M0NsTeRRR/Personnal-website/tree/master/backend)
 - Mailserver : *incoming*
 - Wiki : Bookstack (https://wiki.adminafk.fr)
+- VPN : *incoming*
 
 # Configuration
 
+- Reverse proxy:
+	- `chmod 600 reverse-proxy/config/acme.json`
 - Personnal-website
-	- `chmod 600 traefik/acme.json traefik/access.log traefik/traefik.log personnal-website/nginx/log/access.log personnal-website/nginx/log/error.log`
-	- fill `backend/prod.env` (template : backend/prod.env.example)
+	- fill `personnal-website/backend/prod.env` (template : personnal-website/backend/prod.env.example)
 - Wiki
-	- fill `bookstack/bookstack.env` (template : bookstack/bookstack.env.example)
-	- fill `bookstack/bookstack_db.env` (template : bookstack/bookstack_db.env.example)
+	- fill `bookstack/config/bookstack.env` (template : bookstack/config/bookstack.env.example)
+	- fill `bookstack/config/bookstack_db.env` (template : bookstack/config/bookstack_db.env.example)
 
 # Launch
 
-`docker-compose up -d`
+- Setup : `chmod +x setup.sh` and `./setup.sh`
+Start everything : `chmod +x start.sh` and `./start.sh`
 
 # Credits
 

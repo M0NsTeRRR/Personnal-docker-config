@@ -1,0 +1,37 @@
+version: '3.7'
+services:
+  bookstack:
+    image: linuxserver/bookstack
+    container_name: bookstack
+    restart: always
+    depends_on:
+      - bookstack_db
+    labels:
+      - traefik.backend=bookstack
+      - traefik.frontend.rule=Host:wiki.adminafk.fr
+      - traefik.network=proxy
+      - traefik.port=443
+      - traefik.protocol=https
+      - traefik.enable=true
+      - traefik.backend.healthcheck.hostname=wiki.adminafk.fr
+      - traefik.backend.healthcheck.path=/login
+      - traefik.backend.healthcheck.intervals=10s
+      - traefik.weight=10
+    networks:
+      - proxy
+    env_file:
+        - ./bookstack/config/bookstack.env
+
+  bookstack_db:
+    image: linuxserver/mariadb
+    container_name: bookstack_db
+    restart: always
+    networks:
+      - proxy
+    env_file:
+        - ./bookstack/config/bookstack_db.env
+
+
+networks:
+  proxy:
+    internal: true

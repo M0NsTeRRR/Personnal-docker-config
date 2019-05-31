@@ -1,0 +1,24 @@
+version: '3.7'
+services:
+  reverse-proxy:
+    image: traefik:1.7-alpine
+    container_name: reverse-proxy
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - web
+      - proxy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./reverse-proxy/config/traefik.toml:/traefik.toml
+      - ./reverse-proxy/config/acme.json:/acme.json
+      
+
+networks:
+  web:
+    external: true
+
+  proxy:
+    internal: true
