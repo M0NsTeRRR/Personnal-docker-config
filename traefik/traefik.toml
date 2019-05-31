@@ -1,0 +1,43 @@
+debug = false
+
+logLevel = "ERROR"
+
+defaultEntryPoints = ["https","http"]
+
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+    [entryPoints.http.redirect]
+    entryPoint = "https"
+  [entryPoints.https]
+  address = ":443"
+  [entryPoints.https.tls]
+
+[retry]
+
+[docker]
+domain = "adminafk.fr"
+watch = true
+exposedByDefault = false
+
+[acme]
+email = "admin@adminafk.fr"
+storage = "acme.json"
+entryPoint = "https"
+onHostRule = true
+  [acme.httpChallenge]
+    entryPoint = "http"
+
+[traefikLog]
+  filePath = "/traefik.log"
+
+[accessLog]
+  filePath = "/access.log"
+
+[metrics]
+  [metrics.prometheus]
+    entryPoint = "traefik"
+    buckets = [0.1,0.3,1.2,5.0]
+
+[ping]
+  entryPoint = "traefik"
