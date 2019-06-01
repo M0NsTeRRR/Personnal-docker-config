@@ -30,12 +30,6 @@ onHostRule = true
   [acme.httpChallenge]
     entryPoint = "http"
 
-[traefikLog]
-  filePath = "/traefik.log"
-
-[accessLog]
-  filePath = "/access.log"
-
 [metrics]
   [metrics.prometheus]
     entryPoint = "traefik"

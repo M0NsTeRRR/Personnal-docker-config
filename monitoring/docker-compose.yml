@@ -1,0 +1,105 @@
+version: '3.7'
+services:
+  grafana:
+    image: grafana/grafana:6.2.1
+    container_name: grafana
+    restart: always
+    labels:
+      - traefik.backend=grafana
+      - traefik.frontend.rule=Host:monitoring.adminafk.fr
+      - traefik.network=proxy
+      - traefik.port=3000
+      - traefik.enable=true
+      - traefik.backend.healthcheck.hostname=monitoring.adminafk.fr
+      - traefik.backend.healthcheck.path=/login
+      - traefik.backend.healthcheck.intervals=10s
+      - traefik.weight=60
+    volumes:
+      - ./monitoring/grafana/provisioning/:/etc/grafana/provisioning/
+      - ./monitoring/grafana/provisioning/dashboards/:/var/lib/grafana/dashboards
+    networks:
+      - proxy
+      - web
+      - monitoring
+    env_file:
+      - ./monitoring/grafana/prod.env
+
+  prometheus:
+    image: prom/prometheus:v2.10.0
+    container_name: prometheus
+    restart: always
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-storage:/etc/prometheus
+    networks:
+      - proxy
+      - monitoring
+
+  node-exporter:
+    image: prom/node-exporter:v0.18.0
+    container_name: node-exporter
+    restart: always
+    volumes:
+      - /proc:/host/proc
+      - /sys:/host/sys
+      - /:/rootfs
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)'
+    networks:
+      - monitoring
+
+  cadvisor:
+    image: google/cadvisor:v0.33.0
+    container_name: cadvisor
+    restart: always
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run
+      - /sys:/sys
+      - /var/lib/docker/:/var/lib/docker
+    depends_on:
+      - redis
+    networks:
+      - monitoring
+
+  redis:
+    image: redis:5.0.5-alpine3.9
+    container_name: redis
+    restart: always
+    networks:
+      - monitoring
+
+  loki:
+    image: grafana/loki:master-51bdd15
+    container_name: loki
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - monitoring
+
+  promtail:
+    image: grafana/promtail:master-51bdd15
+    container_name: promtail
+    volumes:
+      - ./monitoring/promtail/docker-config.yaml:/etc/promtail/docker-config.yaml
+      - /var/log:/var/log
+      - /var/lib/docker/containers:/var/lib/docker/containers
+    command: -config.file=/etc/promtail/docker-config.yaml
+    networks:
+      - monitoring
+
+
+networks:
+  web:
+    external: true
+
+  proxy:
+    internal: true
+
+  monitoring:
+    internal: true
+
+volumes:
+  prometheus-storage:

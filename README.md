@@ -7,7 +7,7 @@ This is my personnal-docker-config, it will be depreciated when I will do my per
 # Description
 
 - Reverse proxy : Traefik
-- Monitoring : *incoming*
+- Monitoring : Grafana/Prometheus/node-exporter/cadvisor/loki
 - Personnal-website : homemade (https://ludovic-ortega.adminafk.fr)
 	- server : Nginx
 	- frontend : [Github repository link](https://github.com/M0NsTeRRR/Personnal-website/tree/master/frontend)
@@ -18,8 +18,8 @@ This is my personnal-docker-config, it will be depreciated when I will do my per
 
 # Configuration
 
-- Reverse proxy:
-	- `chmod 600 reverse-proxy/config/acme.json`
+- Monitoring
+	- fill `monitoring/grafana/prod.env` (template : monitoring/grafana/prod.env.example)
 - Personnal-website
 	- fill `personnal-website/backend/prod.env` (template : personnal-website/backend/prod.env.example)
 - Wiki
@@ -29,7 +29,7 @@ This is my personnal-docker-config, it will be depreciated when I will do my per
 # Launch
 
 - Setup : `chmod +x setup.sh` and `./setup.sh`
-Start everything : `chmod +x start.sh` and `./start.sh`
+- Start everything : `./start.sh`
 
 # Credits
 
