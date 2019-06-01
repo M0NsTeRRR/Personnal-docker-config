@@ -10,10 +10,12 @@ services:
       - traefik.network=proxy
       - traefik.port=3000
       - traefik.enable=true
+      - traefik.frontend.rateLimit.rateSet.standard.period=10
+      - traefik.frontend.rateLimit.rateSet.standard.average=150
+      - traefik.frontend.rateLimit.rateSet.standard.burst=300
       - traefik.backend.healthcheck.hostname=monitoring.adminafk.fr
       - traefik.backend.healthcheck.path=/login
       - traefik.backend.healthcheck.intervals=10s
-      - traefik.weight=60
     volumes:
       - ./monitoring/grafana/provisioning/:/etc/grafana/provisioning/
       - ./monitoring/grafana/provisioning/dashboards/:/var/lib/grafana/dashboards

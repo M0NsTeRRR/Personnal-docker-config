@@ -13,10 +13,12 @@ services:
       - traefik.port=443
       - traefik.protocol=https
       - traefik.enable=true
+      - traefik.frontend.rateLimit.rateSet.standard.period=10
+      - traefik.frontend.rateLimit.rateSet.standard.average=150
+      - traefik.frontend.rateLimit.rateSet.standard.burst=300
       - traefik.backend.healthcheck.hostname=wiki.adminafk.fr
       - traefik.backend.healthcheck.path=/login
       - traefik.backend.healthcheck.intervals=10s
-      - traefik.weight=10
     networks:
       - proxy
     env_file:

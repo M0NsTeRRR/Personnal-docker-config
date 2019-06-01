@@ -13,10 +13,12 @@ services:
       - traefik.network=proxy
       - traefik.port=80
       - traefik.enable=true
+      - traefik.frontend.rateLimit.rateSet.standard.period=10
+      - traefik.frontend.rateLimit.rateSet.standard.average=150
+      - traefik.frontend.rateLimit.rateSet.standard.burst=300
       - traefik.backend.healthcheck.hostname=admin.adminafk.fr
       - traefik.backend.healthcheck.path=/admin/
       - traefik.backend.healthcheck.intervals=10s
-      - traefik.weight=50
     volumes:
       - ./personnal-website/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
       - frontend_static:/opt/services/frontend/static

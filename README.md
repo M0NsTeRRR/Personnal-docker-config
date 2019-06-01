@@ -7,7 +7,7 @@ This is my personnal-docker-config, it will be depreciated when I will do my per
 # Description
 
 - Reverse proxy : Traefik
-- Monitoring : Grafana/Prometheus/node-exporter/cadvisor/loki
+- Monitoring : Grafana/Prometheus/node-exporter/cadvisor/loki (https://monitoring.adminafk.fr)
 - Personnal-website : homemade (https://ludovic-ortega.adminafk.fr)
 	- server : Nginx
 	- frontend : [Github repository link](https://github.com/M0NsTeRRR/Personnal-website/tree/master/frontend)
