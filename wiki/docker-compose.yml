@@ -7,8 +7,8 @@ services:
     depends_on:
       - bookstack_db
     labels:
-      - traefik.backend=bookstack
-      - traefik.frontend.rule=Host:wiki.adminafk.fr
+      - traefik.backend=wiki
+      - traefik.frontend.rule=Host:wiki.dminafk.fr
       - traefik.network=proxy
       - traefik.port=443
       - traefik.protocol=https

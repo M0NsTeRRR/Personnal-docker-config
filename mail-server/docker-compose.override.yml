@@ -1,0 +1,25 @@
+version: '2.3'
+
+services:
+    nginx-mailcow:
+      expose:
+         - "80"
+      labels:
+        - traefik.backend=mail-server
+        - traefik.docker.network=personnal-docker-config_proxy
+        - traefik.enable=true
+        - traefik.port=80
+        - traefik.frontend.rule=Host:mail.adminafk.fr
+        - traefik.frontend.rateLimit.rateSet.standard.period=10
+        - traefik.frontend.rateLimit.rateSet.standard.average=150
+        - traefik.frontend.rateLimit.rateSet.standard.burst=300
+        - traefik.backend.healthcheck.hostname=mail.adminafk.fr
+        - traefik.backend.healthcheck.path=/
+        - traefik.backend.healthcheck.intervals=10s
+      networks:
+        proxy:
+
+networks:
+  proxy:
+    external:
+      name: personnal-docker-config_proxy

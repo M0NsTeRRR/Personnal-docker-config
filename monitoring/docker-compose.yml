@@ -5,7 +5,7 @@ services:
     container_name: grafana
     restart: always
     labels:
-      - traefik.backend=grafana
+      - traefik.backend=monitoring
       - traefik.frontend.rule=Host:monitoring.adminafk.fr
       - traefik.network=proxy
       - traefik.port=3000

@@ -8,11 +8,11 @@ This is my personnal-docker-config, it will be depreciated when I will do my per
 
 - Reverse proxy : Traefik
 - Monitoring : Grafana/Prometheus/node-exporter/cadvisor/loki (https://monitoring.adminafk.fr)
-- Personnal-website : homemade (https://ludovic-ortega.adminafk.fr)
+- Personnal-website : homemade (https://ludovic-ortega.adminafk.fr, https://adminafk.fr)
 	- server : Nginx
 	- frontend : [Github repository link](https://github.com/M0NsTeRRR/Personnal-website/tree/master/frontend)
 	- backend : [Github repository link](https://github.com/M0NsTeRRR/Personnal-website/tree/master/backend)
-- Mailserver : *incoming*
+- Mail-server : Mailcow (https://mail.adminafk.fr)
 - Wiki : Bookstack (https://wiki.adminafk.fr)
 - VPN : *incoming*
 
@@ -22,6 +22,9 @@ This is my personnal-docker-config, it will be depreciated when I will do my per
 	- fill `monitoring/grafana/prod.env` (template : monitoring/grafana/prod.env.example)
 - Personnal-website
 	- fill `personnal-website/backend/prod.env` (template : personnal-website/backend/prod.env.example)
+- Mail-server
+	- generate configuration file `./mail-server/generate_config.sh` (hostname = mail.adminafk.fr)
+	- edit `./mail-server/mailcow.conf` with `SKIP_LETS_ENCRYPT=y`
 - Wiki
 	- fill `wiki/config/prod.env` (template : wiki/config/prod.env.example)
 	- fill `wiki/config/prod_db.env` (template : wiki/config/prod_db.env.example)
