@@ -22,7 +22,7 @@ services:
     networks:
       - proxy
     env_file:
-        - ./bookstack/config/bookstack.env
+        - ./wiki/config/prod.env
 
   bookstack_db:
     image: linuxserver/mariadb
@@ -31,7 +31,7 @@ services:
     networks:
       - proxy
     env_file:
-        - ./bookstack/config/bookstack_db.env
+        - ./wiki/config/prod_db.env
 
 
 networks:

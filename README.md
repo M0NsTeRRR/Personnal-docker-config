@@ -23,8 +23,8 @@ This is my personnal-docker-config, it will be depreciated when I will do my per
 - Personnal-website
 	- fill `personnal-website/backend/prod.env` (template : personnal-website/backend/prod.env.example)
 - Wiki
-	- fill `bookstack/config/bookstack.env` (template : bookstack/config/bookstack.env.example)
-	- fill `bookstack/config/bookstack_db.env` (template : bookstack/config/bookstack_db.env.example)
+	- fill `wiki/config/prod.env` (template : wiki/config/prod.env.example)
+	- fill `wiki/config/prod_db.env` (template : wiki/config/prod_db.env.example)
 
 # Launch
 

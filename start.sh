@@ -3,7 +3,7 @@ docker-compose \
 --project-directory . \
 -f reverse-proxy/docker-compose.yml \
 -f personnal-website/docker-compose.yml \
--f bookstack/docker-compose.yml \
+-f wiki/docker-compose.yml \
 -f monitoring/docker-compose.yml \
 up \
 -d
