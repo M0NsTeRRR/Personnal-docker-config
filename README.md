@@ -1,4 +1,4 @@
-This is my personnal-docker-config, it will be depreciated when I will do my personnal-ansible-config.
+This is my personnal-docker-config.
 
 # Requirement
 
@@ -25,8 +25,8 @@ This is my personnal-docker-config, it will be depreciated when I will do my per
 - Personnal-website
 	- fill `personnal-website/backend/prod.env` (template : personnal-website/backend/prod.env.example)
 - Mail-server
-	- generate configuration file `./mail-server/generate_config.sh` (hostname = mail.adminafk.fr)
-	- edit `./mail-server/mailcow.conf` with `SKIP_LETS_ENCRYPT=y`
+	- generate configuration file `cd mail-server && chmod +x generate_config.sh && ./generate_config.sh && cd ..` (hostname = mail.adminafk.fr)
+	- edit `nano mail-server/mailcow.conf` with `SKIP_LETS_ENCRYPT=y`
 - Wiki
 	- fill `wiki/config/prod.env` (template : wiki/config/prod.env.example)
 	- fill `wiki/config/prod_db.env` (template : wiki/config/prod_db.env.example)
