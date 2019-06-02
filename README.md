@@ -14,7 +14,9 @@ This is my personnal-docker-config, it will be depreciated when I will do my per
 	- backend : [Github repository link](https://github.com/M0NsTeRRR/Personnal-website/tree/master/backend)
 - Mail-server : Mailcow (https://mail.adminafk.fr)
 - Wiki : Bookstack (https://wiki.adminafk.fr)
-- VPN : *incoming*
+- VPN : WireGuard *incoming*
+- Git : Gitlab *incoming*
+- DHCP/DNS : Dnsmasq *incoming*
 
 # Configuration
 
