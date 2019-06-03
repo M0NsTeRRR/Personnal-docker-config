@@ -1,14 +1,14 @@
-version: '2.1'
+version: '2.3'
 services:
 
     unbound-mailcow:
       image: mailcow/unbound:1.7
-      build: ./mail-server/data/Dockerfiles/unbound
+      build: ./data/Dockerfiles/unbound
       command: /usr/sbin/unbound
       environment:
         - TZ=${TZ}
       volumes:
-        - ./mail-server/data/conf/unbound/unbound.conf:/etc/unbound/unbound.conf:ro
+        - ./data/conf/unbound/unbound.conf:/etc/unbound/unbound.conf:ro
       restart: always
       tty: true
       networks:
@@ -22,7 +22,7 @@ services:
       volumes:
         - mysql-vol-1:/var/lib/mysql/
         - mysql-socket-vol-1:/var/run/mysqld/
-        - ./mail-server/data/conf/mysql/:/etc/mysql/conf.d/:ro
+        - ./data/conf/mysql/:/etc/mysql/conf.d/:ro
       environment:
         - TZ=${TZ}
         - MYSQL_ROOT_PASSWORD=${DBROOT}
@@ -56,13 +56,13 @@ services:
 
     clamd-mailcow:
       image: mailcow/clamd:1.23
-      build: ./mail-server/data/Dockerfiles/clamd
+      build: ./data/Dockerfiles/clamd
       restart: always
       environment:
         - TZ=${TZ}
         - SKIP_CLAMD=${SKIP_CLAMD:-n}
       volumes:
-        - ./mail-server/data/conf/clamav/:/etc/clamav/
+        - ./data/conf/clamav/:/etc/clamav/
       dns:
         - ${IPV4_NETWORK:-172.22.1}.254
       networks:
@@ -72,7 +72,7 @@ services:
 
     rspamd-mailcow:
       image: mailcow/rspamd:1.42
-      build: ./mail-server/data/Dockerfiles/rspamd
+      build: ./data/Dockerfiles/rspamd
       stop_grace_period: 30s
       depends_on:
         - nginx-mailcow
@@ -80,13 +80,13 @@ services:
       environment:
         - TZ=${TZ}
       volumes:
-        - ./mail-server/data/conf/rspamd/custom/:/etc/rspamd/custom
-        - ./mail-server/data/conf/rspamd/override.d/:/etc/rspamd/override.d
-        - ./mail-server/data/conf/rspamd/local.d/:/etc/rspamd/local.d
-        - ./mail-server/data/conf/rspamd/plugins.d/:/etc/rspamd/plugins.d
-        - ./mail-server/data/conf/rspamd/lua/:/etc/rspamd/lua/:ro
-        - ./mail-server/data/conf/rspamd/rspamd.conf.local:/etc/rspamd/rspamd.conf.local
-        - ./mail-server/data/conf/rspamd/rspamd.conf.override:/etc/rspamd/rspamd.conf.override
+        - ./data/conf/rspamd/custom/:/etc/rspamd/custom
+        - ./data/conf/rspamd/override.d/:/etc/rspamd/override.d
+        - ./data/conf/rspamd/local.d/:/etc/rspamd/local.d
+        - ./data/conf/rspamd/plugins.d/:/etc/rspamd/plugins.d
+        - ./data/conf/rspamd/lua/:/etc/rspamd/lua/:ro
+        - ./data/conf/rspamd/rspamd.conf.local:/etc/rspamd/rspamd.conf.local
+        - ./data/conf/rspamd/rspamd.conf.override:/etc/rspamd/rspamd.conf.override
         - rspamd-vol-1:/var/lib/rspamd
       restart: always
       dns:
@@ -98,24 +98,24 @@ services:
             - rspamd
 
     php-fpm-mailcow:
-      image: mailcow/phpfpm:1.37
-      build: ./mail-server/data/Dockerfiles/phpfpm
+      image: mailcow/phpfpm:1.38
+      build: ./data/Dockerfiles/phpfpm
       command: "php-fpm -d date.timezone=${TZ} -d expose_php=0"
       depends_on:
         - redis-mailcow
       volumes:
-        - ./mail-server/data/web:/web:rw
-        - ./mail-server/data/conf/rspamd/dynmaps:/dynmaps:ro
+        - ./data/web:/web:rw
+        - ./data/conf/rspamd/dynmaps:/dynmaps:ro
         - rspamd-vol-1:/var/lib/rspamd
         - mysql-socket-vol-1:/var/run/mysqld/
-        - ./mail-server/data/conf/sogo/:/etc/sogo/
-        - ./mail-server/data/conf/rspamd/meta_exporter:/meta_exporter:ro
-        - ./mail-server/data/conf/phpfpm/sogo-sso/:/etc/sogo-sso/
-        - ./mail-server/data/conf/phpfpm/php-fpm.d/pools.conf:/usr/local/etc/php-fpm.d/z-pools.conf
-        - ./mail-server/data/conf/phpfpm/php-conf.d/opcache-recommended.ini:/usr/local/etc/php/conf.d/opcache-recommended.ini
-        - ./mail-server/data/conf/phpfpm/php-conf.d/upload.ini:/usr/local/etc/php/conf.d/upload.ini
-        - ./mail-server/data/conf/phpfpm/php-conf.d/other.ini:/usr/local/etc/php/conf.d/zzz-other.ini
-        - ./mail-server/data/assets/templates:/tpls
+        - ./data/conf/sogo/:/etc/sogo/
+        - ./data/conf/rspamd/meta_exporter:/meta_exporter:ro
+        - ./data/conf/phpfpm/sogo-sso/:/etc/sogo-sso/
+        - ./data/conf/phpfpm/php-fpm.d/pools.conf:/usr/local/etc/php-fpm.d/z-pools.conf
+        - ./data/conf/phpfpm/php-conf.d/opcache-recommended.ini:/usr/local/etc/php/conf.d/opcache-recommended.ini
+        - ./data/conf/phpfpm/php-conf.d/upload.ini:/usr/local/etc/php/conf.d/upload.ini
+        - ./data/conf/phpfpm/php-conf.d/other.ini:/usr/local/etc/php/conf.d/zzz-other.ini
+        - ./data/assets/templates:/tpls
       environment:
         - LOG_LINES=${LOG_LINES:-9999}
         - TZ=${TZ}
@@ -146,7 +146,7 @@ services:
 
     sogo-mailcow:
       image: mailcow/sogo:1.54
-      build: ./mail-server/data/Dockerfiles/sogo
+      build: ./data/Dockerfiles/sogo
       environment:
         - DBNAME=${DBNAME}
         - DBUSER=${DBUSER}
@@ -158,9 +158,9 @@ services:
         - ALLOW_ADMIN_EMAIL_LOGIN=${ALLOW_ADMIN_EMAIL_LOGIN:-n}
         - IPV4_NETWORK=${IPV4_NETWORK:-172.22.1}
       volumes:
-        - ./mail-server/data/conf/sogo/:/etc/sogo/
-        - ./mail-server/data/web/inc/init_db.inc.php:/init_db.inc.php
-        - ./mail-server/data/conf/sogo/custom-sogo.js:/usr/lib/GNUstep/SOGo/WebServerResources/js/custom-sogo.js
+        - ./data/conf/sogo/:/etc/sogo/
+        - ./data/web/inc/init_db.inc.php:/init_db.inc.php
+        - ./data/conf/sogo/custom-sogo.js:/usr/lib/GNUstep/SOGo/WebServerResources/js/custom-sogo.js
         - mysql-socket-vol-1:/var/run/mysqld/
         - sogo-web-vol-1:/sogo_web
       restart: always
@@ -173,20 +173,20 @@ services:
             - sogo
 
     dovecot-mailcow:
-      image: mailcow/dovecot:1.77
-      build: ./mail-server/data/Dockerfiles/dovecot
+      image: mailcow/dovecot:1.78
+      build: ./data/Dockerfiles/dovecot
       cap_add:
         - NET_BIND_SERVICE
       volumes:
-        - ./mail-server/data/conf/dovecot:/usr/local/etc/dovecot
-        - ./mail-server/data/assets/ssl:/etc/ssl/mail/:ro
-        - ./mail-server/data/conf/sogo/:/etc/sogo/
-        - ./mail-server/data/conf/phpfpm/sogo-sso/:/etc/phpfpm/
+        - ./data/conf/dovecot:/usr/local/etc/dovecot
+        - ./data/assets/ssl:/etc/ssl/mail/:ro
+        - ./data/conf/sogo/:/etc/sogo/
+        - ./data/conf/phpfpm/sogo-sso/:/etc/phpfpm/
         - vmail-vol-1:/var/vmail
         - vmail-attachments-vol-1:/var/attachments
         - crypt-vol-1:/mail_crypt/
-        - ./mail-server/data/conf/rspamd/custom/:/etc/rspamd/custom
-        - ./mail-server/data/assets/templates:/templates
+        - ./data/conf/rspamd/custom/:/etc/rspamd/custom
+        - ./data/assets/templates:/templates
         - rspamd-vol-1:/var/lib/rspamd
         - mysql-socket-vol-1:/var/run/mysqld/
       environment:
@@ -226,10 +226,10 @@ services:
 
     postfix-mailcow:
       image: mailcow/postfix:1.31
-      build: ./mail-server/data/Dockerfiles/postfix
+      build: ./data/Dockerfiles/postfix
       volumes:
-        - ./mail-server/data/conf/postfix:/opt/postfix/conf
-        - ./mail-server/data/assets/ssl:/etc/ssl/mail/:ro
+        - ./data/conf/postfix:/opt/postfix/conf
+        - ./data/assets/ssl:/etc/ssl/mail/:ro
         - postfix-vol-1:/var/spool/postfix
         - crypt-vol-1:/var/lib/zeyple
         - rspamd-vol-1:/var/lib/rspamd
@@ -291,11 +291,11 @@ services:
         - TZ=${TZ}
         - ALLOW_ADMIN_EMAIL_LOGIN=${ALLOW_ADMIN_EMAIL_LOGIN:-n}
       volumes:
-        - ./mail-server/data/web:/web:ro
-        - ./mail-server/data/conf/rspamd/dynmaps:/dynmaps:ro
-        - ./mail-server/data/assets/ssl/:/etc/ssl/mail/:ro
-        - ./mail-server/data/conf/nginx/:/etc/nginx/conf.d/:rw
-        - ./mail-server/data/conf/rspamd/meta_exporter:/meta_exporter:ro
+        - ./data/web:/web:ro
+        - ./data/conf/rspamd/dynmaps:/dynmaps:ro
+        - ./data/assets/ssl/:/etc/ssl/mail/:ro
+        - ./data/conf/nginx/:/etc/nginx/conf.d/:rw
+        - ./data/conf/rspamd/meta_exporter:/meta_exporter:ro
         - sogo-web-vol-1:/usr/lib/GNUstep/SOGo/
       restart: always
       dns:
@@ -309,7 +309,7 @@ services:
       depends_on:
         - nginx-mailcow
       image: mailcow/acme:1.56
-      build: ./mail-server/data/Dockerfiles/acme
+      build: ./data/Dockerfiles/acme
       dns:
         - ${IPV4_NETWORK:-172.22.1}.254
       environment:
@@ -326,9 +326,9 @@ services:
         - LE_STAGING=${LE_STAGING:-n}
         - TZ=${TZ}
       volumes:
-        - ./mail-server/data/web/.well-known/acme-challenge:/var/www/acme:rw
-        - ./mail-server/data/assets/ssl:/var/lib/acme/:rw
-        - ./mail-server/data/assets/ssl-example:/var/lib/ssl-example/:ro
+        - ./data/web/.well-known/acme-challenge:/var/www/acme:rw
+        - ./data/assets/ssl:/var/lib/acme/:rw
+        - ./data/assets/ssl-example:/var/lib/ssl-example/:ro
         - mysql-socket-vol-1:/var/run/mysqld/
       restart: always
       networks:
@@ -338,7 +338,7 @@ services:
 
     netfilter-mailcow:
       image: mailcow/netfilter:1.25
-      build: ./mail-server/data/Dockerfiles/netfilter
+      build: ./data/Dockerfiles/netfilter
       stop_grace_period: 30s
       depends_on:
         - dovecot-mailcow
@@ -364,11 +364,11 @@ services:
       image: mailcow/watchdog:1.42
       # Debug
       #command: /watchdog.sh
-      build: ./mail-server/data/Dockerfiles/watchdog
+      build: ./data/Dockerfiles/watchdog
       volumes:
         - rspamd-vol-1:/var/lib/rspamd
         - mysql-socket-vol-1:/var/run/mysqld/
-        - ./mail-server/data/assets/ssl:/etc/ssl/mail/:ro
+        - ./data/assets/ssl:/etc/ssl/mail/:ro
       restart: always
       environment:
         - LOG_LINES=${LOG_LINES:-9999}
@@ -395,14 +395,14 @@ services:
     dockerapi-mailcow:
       image: mailcow/dockerapi:1.30
       restart: always
-      build: ./mail-server/data/Dockerfiles/dockerapi
+      build: ./data/Dockerfiles/dockerapi
       oom_kill_disable: true
       environment:
         - DBROOT=${DBROOT}
         - TZ=${TZ}
       volumes:
         - /var/run/docker.sock:/var/run/docker.sock:ro
-        - ./mail-server/data/conf/rspamd/override.d/worker-controller-password.inc:/access.inc:rw
+        - ./data/conf/rspamd/override.d/worker-controller-password.inc:/access.inc:rw
       networks:
         mailcow-network:
           aliases:
@@ -410,7 +410,7 @@ services:
 
     solr-mailcow:
       image: mailcow/solr:1.5
-      build: ./mail-server/data/Dockerfiles/solr
+      build: ./data/Dockerfiles/solr
       restart: always
       volumes:
         - solr-vol-1:/opt/solr/server/solr/dovecot-fts/data

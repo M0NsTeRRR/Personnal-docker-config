@@ -8,9 +8,9 @@ services:
       - personnal-website-frontend
       - personnal-website-backend
     labels:
-      - traefik.backend=nginx-personnal-website
+      - traefik.backend=personnal-website
       - traefik.frontend.rule=Host:ludovic-ortega.adminafk.fr,adminafk.fr,api.adminafk.fr,admin.adminafk.fr
-      - traefik.network=proxy
+      - traefik.docker.network=proxy
       - traefik.port=80
       - traefik.enable=true
       - traefik.frontend.rateLimit.rateSet.standard.period=10
@@ -25,6 +25,7 @@ services:
       - backend_static:/opt/services/backend/static
     networks:
       - proxy
+      - personnal-website
 
   personnal-website-frontend:
     build: ./personnal-website/frontend/
@@ -32,7 +33,7 @@ services:
     volumes:
       - frontend_static:/opt/services/frontend/static
     networks:
-      - proxy
+      - personnal-website
 
   personnal-website-backend:
     build: ./personnal-website/backend/
@@ -49,15 +50,19 @@ services:
     volumes:
       - backend_static:/opt/services/backend/static
     networks:
-      - proxy
+      - personnal-website
     env_file:
       - ./personnal-website/backend/prod.env
 
 
 networks:
   proxy:
-    internal: true
+    external:
+      name: proxy
 
+  personnal-website:
+    external:
+      name: personnal-website
 
 volumes:
   frontend_static:

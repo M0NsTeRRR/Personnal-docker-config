@@ -7,7 +7,7 @@ services:
     labels:
       - traefik.backend=monitoring
       - traefik.frontend.rule=Host:monitoring.adminafk.fr
-      - traefik.network=proxy
+      - traefik.docker.network=proxy
       - traefik.port=3000
       - traefik.enable=true
       - traefik.frontend.rateLimit.rateSet.standard.period=10
@@ -94,14 +94,17 @@ services:
 
 
 networks:
-  web:
-    external: true
+  proxy:
+    external:
+      name: web
 
   proxy:
-    internal: true
+    external:
+      name: proxy
 
   monitoring:
-    internal: true
+    external:
+      name: monitoring
 
 volumes:
   prometheus-storage:

@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   reverse-proxy:
-    image: traefik:1.7-alpine
+    image: traefik:1.7.12-alpine
     container_name: reverse-proxy
     restart: always
     ports:
@@ -19,7 +19,9 @@ services:
 
 networks:
   web:
-    external: true
+    external:
+      name: web
 
   proxy:
-    internal: true
+    external:
+      name: proxy

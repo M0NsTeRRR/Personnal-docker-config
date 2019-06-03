@@ -8,9 +8,6 @@ docker-compose \
 up \
 -d
 
-docker-compose \
--p personnal-docker-config-mail-server \
---project-directory . \
--f mail-server/docker-compose.yml \
-up \
--d
+cd mail-server
+docker-compose up -d
+cd ..
