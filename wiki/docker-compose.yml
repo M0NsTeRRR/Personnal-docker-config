@@ -8,7 +8,7 @@ services:
       - bookstack_db
     labels:
       - traefik.backend=wiki
-      - traefik.frontend.rule=Host:wiki.dminafk.fr
+      - traefik.frontend.rule=Host:wiki.adminafk.fr
       - traefik.docker.network=proxy
       - traefik.port=443
       - traefik.protocol=https
