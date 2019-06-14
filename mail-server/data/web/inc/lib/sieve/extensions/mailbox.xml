@@ -1,8 +1,0 @@
-<?xml version='1.0' standalone='yes'?>
-
-<extension name="mailbox">
-
-	<test name="mailboxexists">
-    <parameter type="string" name="folder" />
-	</test>
-</extension>

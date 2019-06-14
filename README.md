@@ -25,16 +25,21 @@ This is my personnal-docker-config.
 - Personnal-website
 	- fill `personnal-website/backend/prod.env` (template : personnal-website/backend/prod.env.example)
 - Mail-server
-	- generate configuration file `cd mail-server && chmod +x generate_config.sh && ./generate_config.sh && cd ..` (hostname = mail.adminafk.fr)
-	- edit `nano mail-server/mailcow.conf` with `SKIP_LETS_ENCRYPT=y`
+	- `umask 022`
+	- `git clone https://github.com/mailcow/mailcow-dockerized`
+	- `mv docker-compose.override.yml mailcow-dockerized/ && cd mailcow-dockerized/`
+	- remove http/https binded ports on `nginx-mailcow` container `nano docker-compose.yml`
+	- generate configuration file `chmod +x generate_config.sh && ./generate_config.sh` (hostname = mail.adminafk.fr)
+	- edit `nano mailcow.conf` with `SKIP_LETS_ENCRYPT=y`
 - Wiki
 	- fill `wiki/config/prod.env` (template : wiki/config/prod.env.example)
 	- fill `wiki/config/prod_db.env` (template : wiki/config/prod_db.env.example)
 
 # Launch
 
-- Setup : `chmod +x setup.sh` and `./setup.sh`
-- Start everything : `./start.sh`
+- Setup : `chmod +x setup.sh && ./setup.sh`
+- Start everything (no mailcow) : `./start.sh`
+ -Start mailcow : `cd mail-server/mailcow-dockerized/ && docker-compose up -d && cd ../..`
 
 # Credits
 

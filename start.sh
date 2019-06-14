@@ -7,7 +7,3 @@ docker-compose \
 -f monitoring/docker-compose.yml \
 up \
 -d
-
-cd mail-server
-docker-compose up -d
-cd ..

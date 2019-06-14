@@ -1,7 +1,9 @@
+# traefik
 chmod 600 reverse-proxy/config/acme.json
-umask 022
+
 chmod +x start.sh
 
+# setup docker network
 docker network create \
 --driver=bridge \
 --subnet=172.22.2.0/24 \
