@@ -61,7 +61,11 @@ This is my personnal-docker-config.
 - Setup : `chmod +x setup.sh && ./setup.sh`
 - Start everything (no mailcow) : `./start.sh`
 - Start mailcow : `cd mail-server/mailcow-dockerized/ && docker-compose up -d && cd ../..`
+
+# Usage
 - Finish git install `https://git.adminafk.fr/install`
+- Finish wiki install `https://wiki.adminafk.fr/` (default: admin@admin.com/password)
+- Finish mail-server install `https://wiki.adminafk.fr/` (default: admin/moohoo)
 
 # Credits
 
