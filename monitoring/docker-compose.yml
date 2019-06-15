@@ -37,22 +37,6 @@ services:
       - proxy
       - monitoring
 
-  node-exporter:
-    image: prom/node-exporter:v0.18.0
-    container_name: node-exporter
-    restart: always
-    volumes:
-      - /proc:/host/proc
-      - /sys:/host/sys
-      - /:/rootfs
-    command:
-      - '--path.procfs=/host/proc'
-      - '--path.rootfs=/rootfs'
-      - '--path.sysfs=/host/sys'
-      - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)'
-    networks:
-      - monitoring
-
   cadvisor:
     image: google/cadvisor:v0.33.0
     container_name: cadvisor
@@ -74,27 +58,23 @@ services:
     networks:
       - monitoring
 
-  loki:
-    image: grafana/loki:master-51bdd15
-    container_name: loki
-    command: -config.file=/etc/loki/local-config.yaml
-    networks:
-      - monitoring
-
-  promtail:
-    image: grafana/promtail:master-51bdd15
-    container_name: promtail
+  influxdb:
+    image: influxdb:1.7.6
+    container_name: influxdb
+    restart: always
+    ports:
+      - "8089:8089/udp"
     volumes:
-      - ./monitoring/promtail/docker-config.yaml:/etc/promtail/docker-config.yaml
-      - /var/log:/var/log
-      - /var/lib/docker/containers:/var/lib/docker/containers
-    command: -config.file=/etc/promtail/docker-config.yaml
+      - ./monitoring/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf
+      - influxdb-storage:/var/lib/influxdb
     networks:
       - monitoring
+    env_file:
+      - ./monitoring/influxdb/prod.env
 
 
 networks:
-  proxy:
+  web:
     external:
       name: web
 
@@ -108,3 +88,4 @@ networks:
 
 volumes:
   prometheus-storage:
+  influxdb-storage:
