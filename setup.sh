@@ -20,21 +20,28 @@ proxy
 
 docker network create \
 --driver=bridge \
---subnet=172.22.4.4/24 \
+--subnet=172.22.4.0/24 \
 --ip-range=172.22.4.0/24 \
 --gateway=172.22.4.254 \
 monitoring
 
 docker network create \
 --driver=bridge \
---subnet=172.22.5.3/24 \
+--subnet=172.22.5.0/24 \
 --ip-range=172.22.5.0/24 \
 --gateway=172.22.5.254 \
 personnal-website
 
 docker network create \
 --driver=bridge \
---subnet=172.22.6.3/24 \
+--subnet=172.22.6.0/24 \
 --ip-range=172.22.6.0/24 \
 --gateway=172.22.6.254 \
 wiki
+
+docker network create \
+--driver=bridge \
+--subnet=172.22.8.0/24 \
+--ip-range=172.22.8.0/24 \
+--gateway=172.22.8.254 \
+git

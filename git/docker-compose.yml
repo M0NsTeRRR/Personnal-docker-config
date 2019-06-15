@@ -1,0 +1,55 @@
+version: '3.7'
+services:
+  gitea:
+    image: gitea/gitea:1.8
+    container_name: gitea
+    restart: always
+    volumes:
+      - ./gitea:/data
+      - gitea:/data
+    ports:
+      - "222:22"
+    labels:
+      - traefik.backend=git
+      - traefik.frontend.rule=Host:git.adminafk.fr
+      - traefik.docker.network=proxy
+      - traefik.port=3000
+      - traefik.enable=true
+      - traefik.frontend.rateLimit.rateSet.standard.period=10
+      - traefik.frontend.rateLimit.rateSet.standard.average=150
+      - traefik.frontend.rateLimit.rateSet.standard.burst=300
+      - traefik.backend.healthcheck.hostname=git.adminafk.fr
+      - traefik.backend.healthcheck.path=/
+      - traefik.backend.healthcheck.intervals=10s
+    depends_on:
+      - gitea_db
+    networks:
+      - proxy
+      - git
+    env_file:
+      - ./git/config/prod.env
+
+  gitea_db:
+    image: postgres:9.6
+    container_name: gitea_db
+    restart: always
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    networks:
+      - git
+    env_file:
+      - ./git/config/prod_db.env
+
+
+networks:
+  proxy:
+    external:
+      name: proxy
+
+  git:
+    external:
+      name: git
+
+
+volumes:
+  gitea:

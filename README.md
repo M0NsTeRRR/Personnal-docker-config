@@ -15,7 +15,7 @@ This is my personnal-docker-config.
 - Mail-server : Mailcow (https://mail.adminafk.fr)
 - Wiki : Bookstack (https://wiki.adminafk.fr)
 - VPN : WireGuard *incoming*
-- Git : Gitlab *incoming*
+- Git : Gitea (https://git.adminafk.fr)
 - DHCP/DNS : Dnsmasq *incoming*
 
 # Configuration
@@ -34,12 +34,33 @@ This is my personnal-docker-config.
 - Wiki
 	- fill `wiki/config/prod.env` (template : wiki/config/prod.env.example)
 	- fill `wiki/config/prod_db.env` (template : wiki/config/prod_db.env.example)
+- Git
+	- fill `git/config/prod.env` (template : git/config/prod.env.example)
+	- fill `git/config/prod_db.env` (template : git/config/prod_db.env.example)
+
+# Exposed ports
+
+- Reverse proxy
+	- 80 (HTTP)
+	- 443 (HTTPS)
+- Mail-server
+	- 110 (POP3 - Dovecot)
+	- 25 (SMTP - Postfix)
+	- 465 (SMTPS - Postfix)
+	- 587 (Submission - Postfix)
+	- 143 (IMAP - Dovecot)
+	- 993 (IMAPS - Dovecot)
+	- 995 (POP3S - Dovecot)
+	- 4190 (ManageSieve - Dovecot)
+- Git
+	- 22 (SSH)
 
 # Launch
 
 - Setup : `chmod +x setup.sh && ./setup.sh`
 - Start everything (no mailcow) : `./start.sh`
- -Start mailcow : `cd mail-server/mailcow-dockerized/ && docker-compose up -d && cd ../..`
+- Start mailcow : `cd mail-server/mailcow-dockerized/ && docker-compose up -d && cd ../..`
+- Finish git install `https://git.adminafk.fr/install`
 
 # Credits
 

@@ -1,8 +1,8 @@
 version: '3.7'
 services:
-  reverse-proxy:
+  traefik:
     image: traefik:1.7.12-alpine
-    container_name: reverse-proxy
+    container_name: traefik
     restart: always
     ports:
       - "80:80"
