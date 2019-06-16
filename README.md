@@ -8,7 +8,7 @@ This is my personnal-docker-config.
 
 - Reverse proxy : Traefik
 - Monitoring : Grafana/Prometheus/node-exporter/cadvisor/loki (https://monitoring.adminafk.fr)
-- Log : Graylog *incoming* (https://log.adminafk.fr)
+- Log : Graylog (https://log.adminafk.fr)
 - Personnal-website : homemade (https://ludovic-ortega.adminafk.fr, https://adminafk.fr)
 	- server : Nginx
 	- frontend : [Github repository link](https://github.com/M0NsTeRRR/Personnal-website/tree/master/frontend)

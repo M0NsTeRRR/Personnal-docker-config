@@ -4,6 +4,8 @@ chmod 600 reverse-proxy/config/acme.json
 chmod +x start.sh
 
 # setup docker network
+# 172.22.1.0/24 reserved to mailcow
+
 docker network create \
 --driver=bridge \
 --subnet=172.22.2.0/24 \
@@ -30,13 +32,20 @@ docker network create \
 --subnet=172.22.5.0/24 \
 --ip-range=172.22.5.0/24 \
 --gateway=172.22.5.254 \
-personnal-website
+log
 
 docker network create \
 --driver=bridge \
 --subnet=172.22.6.0/24 \
 --ip-range=172.22.6.0/24 \
 --gateway=172.22.6.254 \
+personnal-website
+
+docker network create \
+--driver=bridge \
+--subnet=172.22.7.0/24 \
+--ip-range=172.22.7.0/24 \
+--gateway=172.22.7.254 \
 wiki
 
 docker network create \
