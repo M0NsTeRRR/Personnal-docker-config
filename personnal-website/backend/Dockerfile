@@ -14,9 +14,6 @@ RUN git clone https://github.com/M0NsTeRRR/website
 # copy file to /app/
 RUN mkdir -p /app/backend/ && mv website/backend/* /app/backend/
 
-# remove useless file
-RUN rm -Rf ./website /app/backend/Dockerfile
-
 # install dependencies
 RUN pip3 install -r ./app/backend/requirements.txt
 

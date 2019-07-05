@@ -14,9 +14,6 @@ RUN git clone https://github.com/M0NsTeRRR/website
 # copy file to /app/
 RUN mkdir -p /app/frontend/ && mv website/frontend/* /app/frontend/
 
-# remove useless file
-RUN rm -Rf ./website /app/frontend/Dockerfile
-
 # set workdir
 WORKDIR /app/frontend/
 
