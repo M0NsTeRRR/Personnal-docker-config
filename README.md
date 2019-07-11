@@ -2,6 +2,8 @@ This is my personnal-docker-config.
 
 # Requirement
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/69e259dc570b47b09fcc71b603842863)](https://app.codacy.com/app/M0NsTeRRR/Personnal-docker-config?utm_source=github.com&utm_medium=referral&utm_content=M0NsTeRRR/Personnal-docker-config&utm_campaign=Badge_Grade_Dashboard)
+
 - Docker compose with **Docker Engine >= 18.06.0+**
 
 # Description
