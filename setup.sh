@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # traefik
 chmod 600 reverse-proxy/config/acme.json
 

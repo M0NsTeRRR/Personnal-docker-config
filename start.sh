@@ -1,3 +1,5 @@
+#!/bin/bash
+
 docker-compose \
 -p personnal-docker-config \
 --project-directory . \

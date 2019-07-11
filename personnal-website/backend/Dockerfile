@@ -1,6 +1,6 @@
 FROM python:3.7-alpine as build
 
-MAINTAINER Ludovic Ortega mastership@hotmail.fr
+LABEL maintainer="Ludovic Ortega mastership@hotmail.fr"
 
 # update package
 RUN apk update

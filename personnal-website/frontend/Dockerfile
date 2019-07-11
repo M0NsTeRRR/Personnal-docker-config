@@ -1,6 +1,6 @@
 FROM node:12.6-alpine as build
 
-MAINTAINER Ludovic Ortega mastership@hotmail.fr
+LABEL maintainer="Ludovic Ortega mastership@hotmail.fr"
 
 # update package
 RUN apk update
