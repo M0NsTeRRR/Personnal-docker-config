@@ -22,6 +22,9 @@ FROM python:3.7-alpine
 # update package
 RUN apk update
 
+# install gunicorn
+RUN pip3 install gunicorn
+
 # copy backend
 COPY --from=build /app/backend/ /app/backend/
 

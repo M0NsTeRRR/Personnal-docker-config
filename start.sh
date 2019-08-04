@@ -8,9 +8,12 @@ docker-compose \
 -f personnal-website/docker-compose.yml \
 -f wiki/docker-compose.yml \
 -f git/docker-compose.yml \
+-f automation/docker-compose.yml \
+-f status/docker-compose.yml \
 up \
 -d
 
+# mailcow
 cd mail-server/mailcow-dockerized/
 docker-compose \
 -p personnal-docker-config \
@@ -20,6 +23,7 @@ up \
 -d
 cd ../..
 
+# log
 docker-compose \
 -p personnal-docker-config \
 --project-directory . \

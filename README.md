@@ -1,10 +1,13 @@
 This is my personnal-docker-config.
 
-# Requirement
+# Requirements
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/69e259dc570b47b09fcc71b603842863)](https://app.codacy.com/app/M0NsTeRRR/Personnal-docker-config?utm_source=github.com&utm_medium=referral&utm_content=M0NsTeRRR/Personnal-docker-config&utm_campaign=Badge_Grade_Dashboard)
 
 - Docker compose with **Docker Engine >= 18.06.0+**
+
+- Automation
+	- Ansible
 
 # Description
 
@@ -19,12 +22,17 @@ This is my personnal-docker-config.
 - Wiki : Bookstack (https://wiki.adminafk.fr)
 - VPN : WireGuard *incoming*
 - Git : Gitea (https://git.adminafk.fr)
+- Automation : Ansible AWX [LAN](http://<IP_VM:8000>)
+- Status : Statusfy (https://status.adminafk.fr)
 - DHCP/DNS : Dnsmasq *incoming*
 
 # Configuration
 
 - Monitoring
 	- fill `monitoring/grafana/prod.env` (template : monitoring/grafana/prod.env.example)
+	- fill `monitoring/influxdb/prod.env` (template : monitoring/influxdb/prod.env.example)
+- Log
+	- fill `log/config/prod.env` (template : log/config/prod.env.example)
 - Personnal-website
 	- fill `personnal-website/backend/prod.env` (template : personnal-website/backend/prod.env.example)
 - Mail-server
@@ -40,6 +48,15 @@ This is my personnal-docker-config.
 - Git
 	- fill `git/config/prod.env` (template : git/config/prod.env.example)
 	- fill `git/config/prod_db.env` (template : git/config/prod_db.env.example)
+- Automation
+	- `git clone https://github.com/ansible/awx.git automation`
+	- edit `nano automation/installer/inventory` :
+		- host_port = 8000
+		- admin_password = myAwesomePassword
+		- docker_compose_dir = /app/Personnal-docker-config/automation/
+	- build `cd automation/installer && ansible-playbook -i inventory install.yml && cd ../..`
+	- when build is ended (docker logs -f awx_task) update `automation/docker-compose.yml` and update `restart: always` on all containers
+	
 
 # Exposed ports
 

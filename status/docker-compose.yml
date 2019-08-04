@@ -1,0 +1,27 @@
+version: "3.7"
+services:
+  statusfy:
+    build:
+      context: .
+    container_name: statusfy
+    restart: always
+    labels:
+      - traefik.backend=status
+      - traefik.frontend.rule=Host:status.adminafk.fr
+      - traefik.docker.network=proxy
+      - traefik.port=3000
+      - traefik.enable=true
+      - traefik.frontend.rateLimit.rateSet.standard.period=10
+      - traefik.frontend.rateLimit.rateSet.standard.average=150
+      - traefik.frontend.rateLimit.rateSet.standard.burst=300
+      - traefik.backend.healthcheck.hostname=status.adminafk.fr
+      - traefik.backend.healthcheck.path=/
+      - traefik.backend.healthcheck.intervals=10s
+    networks:
+      - proxy
+
+
+networks:
+  proxy:
+    external:
+      name: proxy

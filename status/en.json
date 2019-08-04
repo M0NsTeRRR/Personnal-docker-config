@@ -1,0 +1,26 @@
+{
+  "title": "System Status AdminAFK",
+  "description": "Status page of AdminAFK services",
+  "systems": {
+    "items": {
+      "personnalWebsite": {
+        "title": "Personnal-website"
+      },
+      "monitoring": {
+        "title": "Monitoring"
+      },
+      "log": {
+        "title": "Log"
+      },
+      "mail": {
+        "title": "Mail"
+      },
+      "wiki": {
+        "title": "Wiki"
+      },
+      "git": {
+        "title": "Git"
+      }
+    }
+  }
+}
