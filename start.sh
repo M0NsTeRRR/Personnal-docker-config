@@ -9,7 +9,7 @@ docker-compose \
 -f wiki/docker-compose.yml \
 -f git/docker-compose.yml \
 -f automation/docker-compose.yml \
--f status/docker-compose.yml \
+-f status/Docker/docker-compose.yml \
 up \
 -d
 

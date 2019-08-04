@@ -25,9 +25,6 @@ services:
     image: graylog/graylog:3.0
     container_name: graylog
     restart: always
-    links:
-      - mongodb:mongo
-      - elasticsearch
     depends_on:
       - mongodb
       - elasticsearch

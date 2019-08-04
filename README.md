@@ -23,7 +23,7 @@ This is my personnal-docker-config.
 - VPN : WireGuard *incoming*
 - Git : Gitea (https://git.adminafk.fr)
 - Automation : Ansible AWX [LAN](http://<IP_VM:8000>)
-- Status : Statusfy (https://status.adminafk.fr)
+- Status : Cachet (https://status.adminafk.fr)
 - DHCP/DNS : Dnsmasq *incoming*
 
 # Configuration
@@ -56,8 +56,13 @@ This is my personnal-docker-config.
 		- docker_compose_dir = /app/Personnal-docker-config/automation/
 	- build `cd automation/installer && ansible-playbook -i inventory install.yml && cd ../..`
 	- when build is ended (docker logs -f awx_task) update `automation/docker-compose.yml` and update `restart: always` on all containers
+- Status
+	- `cd status && git clone https://github.com/CachetHQ/Docker`
+	- fill environement variable `nano docker-compose.yml`
+	- `rm Docker/docker-compose.yml && cp docker-compose.yml Docker/`
+	- build and start the containers and edit environment variable `APP_KEY` with the value provided by the container `nano Docker/docker-compose.yml`
+	- restart the container
 	
-
 # Exposed ports
 
 - Reverse proxy
@@ -82,9 +87,10 @@ This is my personnal-docker-config.
 - Start mailcow : `cd mail-server/mailcow-dockerized/ && docker-compose up -d && cd ../..`
 
 # Usage
-- Finish git install `https://git.adminafk.fr/install`
-- Finish wiki install `https://wiki.adminafk.fr/` (default: admin@admin.com/password)
-- Finish mail-server install `https://wiki.adminafk.fr/` (default: admin/moohoo)
+- Finish Git install `https://git.adminafk.fr/install`
+- Finish Wiki install `https://wiki.adminafk.fr/` (default: admin@admin.com/password)
+- Finish Mail-server install `https://wiki.adminafk.fr/` (default: admin/moohoo)
+- Finish Status install `https://status.adminafk.fr/setup`
 
 # Credits
 
