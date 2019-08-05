@@ -10,6 +10,7 @@ docker-compose \
 -f git/docker-compose.yml \
 -f automation/docker-compose.yml \
 -f status/Docker/docker-compose.yml \
+-f dns-update/docker-compose.yml \
 up \
 -d
 

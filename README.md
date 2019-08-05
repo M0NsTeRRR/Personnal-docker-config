@@ -1,8 +1,20 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/69e259dc570b47b09fcc71b603842863)](https://app.codacy.com/app/M0NsTeRRR/Personnal-docker-config?utm_source=github.com&utm_medium=referral&utm_content=M0NsTeRRR/Personnal-docker-config&utm_campaign=Badge_Grade_Dashboard)
+
 This is my personnal-docker-config.
 
-# Requirements
+# Status
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/69e259dc570b47b09fcc71b603842863)](https://app.codacy.com/app/M0NsTeRRR/Personnal-docker-config?utm_source=github.com&utm_medium=referral&utm_content=M0NsTeRRR/Personnal-docker-config&utm_campaign=Badge_Grade_Dashboard)
+| Websites        | Status           | Uptime  |
+| ------------- |:-------------:| -----:|
+| [Personnal-website](https://ludovic-ortega.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783222469-12d94c11dba41aed46ce378f?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783222469-12d94c11dba41aed46ce378f?style=flat-square)
+| [Mail-server](https://mail.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783222478-f6ddda399cf297b69f816685?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783222478-f6ddda399cf297b69f816685?style=flat-square)
+| [Wiki](https://wiki.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783222480-fdce5de8f21972139c93fea4?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783222480-fdce5de8f21972139c93fea4?style=flat-square)
+| [Git](https://git.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783222482-af777491dc23d4d5635d4709?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783222482-af777491dc23d4d5635d4709?style=flat-square)
+| [Status](https://status.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783222483-561a3c98cf377ede6eac1648?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783222483-561a3c98cf377ede6eac1648?style=flat-square)
+| [Monitoring](https://monitoring.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783222475-0347e46cdbe638245ea6f97b?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783222475-0347e46cdbe638245ea6f97b?style=flat-square)
+| [Log](https://log.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783222476-a0725d897e53a6762add2d31?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783222476-a0725d897e53a6762add2d31?style=flat-square)
+
+# Requirements
 
 - Docker compose with **Docker Engine >= 18.06.0+**
 
@@ -20,11 +32,12 @@ This is my personnal-docker-config.
 	- backend : [Github repository link](https://github.com/M0NsTeRRR/Personnal-website/tree/master/backend)
 - Mail-server : Mailcow (https://mail.adminafk.fr)
 - Wiki : Bookstack (https://wiki.adminafk.fr)
-- VPN : WireGuard *incoming*
 - Git : Gitea (https://git.adminafk.fr)
 - Automation : Ansible AWX [LAN](http://<IP_VM:8000>)
 - Status : Cachet (https://status.adminafk.fr)
+- VPN : WireGuard *incoming*
 - DHCP/DNS : Dnsmasq *incoming*
+- Dns-update : homemade [Github repository link](https://github.com/M0NsTeRRR/DNSUpdateOVH)
 
 # Configuration
 
@@ -58,11 +71,13 @@ This is my personnal-docker-config.
 	- when build is ended (docker logs -f awx_task) update `automation/docker-compose.yml` and update `restart: always` on all containers
 - Status
 	- `cd status && git clone https://github.com/CachetHQ/Docker`
-	- fill environement variable `nano docker-compose.yml`
+	- fill environment variables `nano docker-compose.yml`
 	- `rm Docker/docker-compose.yml && cp docker-compose.yml Docker/`
 	- build and start the containers and edit environment variable `APP_KEY` with the value provided by the container `nano Docker/docker-compose.yml`
 	- restart the container
-	
+- Dns-update
+	- fill `dns-update/config/prod.env` (template : dns-update/config/prod.env.example)
+
 # Exposed ports
 
 - Reverse proxy

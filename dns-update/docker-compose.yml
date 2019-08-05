@@ -1,0 +1,8 @@
+version: '3.7'
+services:
+  dns-update:
+    image: monsterrr/dnsupdateovh:latest
+    container_name: dns-update
+    restart: always
+    env_file:
+      - ./dns-update/config/prod.env

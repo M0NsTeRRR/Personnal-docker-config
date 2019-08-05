@@ -28,7 +28,7 @@ services:
       - personnal-website
 
   personnal-website-frontend:
-    build: ./personnal-website/frontend/
+    image: monsterrr/personnal-website:frontend-latest
     container_name: personnal-website-frontend
     volumes:
       - frontend_static:/opt/services/frontend/static
@@ -36,7 +36,7 @@ services:
       - personnal-website
 
   personnal-website-backend:
-    build: ./personnal-website/backend/
+    image: monsterrr/personnal-website:backend-latest
     command: >
       sh -c "rm -rf ./static/* /opt/services/backend/static/*
       && python3 manage.py makemigrations
