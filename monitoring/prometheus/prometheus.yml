@@ -15,6 +15,6 @@ scrape_configs:
     static_configs:
       - targets: ['cadvisor:8080']
 
-  - job_name: 'reverse-proxy'
+  - job_name: 'traefik'
     static_configs:
-      - targets: ['reverse-proxy:8080']
+      - targets: ['traefik:8080']
