@@ -75,6 +75,10 @@ This is my personnal-docker-config.
 	- `rm Docker/docker-compose.yml && cp docker-compose.yml Docker/`
 	- build and start the containers and edit environment variable `APP_KEY` with the value provided by the container `nano Docker/docker-compose.yml`
 	- restart the container
+	- After the setup on the website put this labels on the `docker-compose.yml` and restart the container
+		- `traefik.backend.healthcheck.hostname=status.adminafk.fr`
+      	- `traefik.backend.healthcheck.path=/`
+      	- `traefik.backend.healthcheck.intervals=10s`
 - Dns-update
 	- fill `dns-update/config/prod.env` (template : dns-update/config/prod.env.example)
 

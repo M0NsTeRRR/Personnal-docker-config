@@ -18,9 +18,6 @@ services:
       - traefik.frontend.rateLimit.rateSet.standard.period=10
       - traefik.frontend.rateLimit.rateSet.standard.average=150
       - traefik.frontend.rateLimit.rateSet.standard.burst=300
-      - traefik.backend.healthcheck.hostname=status.adminafk.fr
-      - traefik.backend.healthcheck.path=/setup
-      - traefik.backend.healthcheck.intervals=10s
     networks:
       - proxy
       - status
