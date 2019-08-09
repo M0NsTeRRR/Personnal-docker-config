@@ -63,3 +63,10 @@ docker network create \
 --ip-range=172.22.9.0/24 \
 --gateway=172.22.9.254 \
 status
+
+docker network create \
+--driver=bridge \
+--subnet=172.22.10.0/24 \
+--ip-range=172.22.10.0/24 \
+--gateway=172.22.10.254 \
+automation
