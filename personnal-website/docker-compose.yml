@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   nginx-personnal-website:
-    image: nginx:1.16-alpine
+    image: nginx:1.17.3-alpine
     container_name: nginx-personnal-website
     restart: always
     depends_on:

@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   bookstack:
-    image: linuxserver/bookstack
+    image: linuxserver/bookstack:latest
     container_name: bookstack
     restart: always
     depends_on:

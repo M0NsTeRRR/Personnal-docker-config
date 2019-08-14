@@ -36,9 +36,8 @@ This is my personnal-docker-config.
 - Git : Gitea (https://git.adminafk.fr)
 - Automation : Ansible AWX (https://automation.adminafk.fr)
 - Status : Cachet (https://status.adminafk.fr)
-- VPN : WireGuard *incoming*
-- DHCP/DNS : Dnsmasq *incoming*
 - Dns-update : homemade [Github repository link](https://github.com/M0NsTeRRR/DNSUpdateOVH)
+- Wifi controller : Unifi [LAN] **incoming**
 
 # Configuration
 
@@ -116,19 +115,19 @@ This is my personnal-docker-config.
 # Exposed ports
 
 - Reverse proxy
-	- 80 (HTTP)
-	- 443 (HTTPS)
+	- 80 (HTTP) - TCP
+	- 443 (HTTPS) - TCP
 - Mail-server
-	- 110 (POP3 - Dovecot)
-	- 25 (SMTP - Postfix)
-	- 465 (SMTPS - Postfix)
-	- 587 (Submission - Postfix)
-	- 143 (IMAP - Dovecot)
-	- 993 (IMAPS - Dovecot)
-	- 995 (POP3S - Dovecot)
-	- 4190 (ManageSieve - Dovecot)
+	- 110 (POP3 - Dovecot) - TCP
+	- 25 (SMTP - Postfix) - TCP
+	- 465 (SMTPS - Postfix) - TCP
+	- 587 (Submission - Postfix) - TCP
+	- 143 (IMAP - Dovecot) - TCP
+	- 993 (IMAPS - Dovecot) - TCP
+	- 995 (POP3S - Dovecot) - TCP
+	- 4190 (ManageSieve - Dovecot) - TCP
 - Git
-	- 22 (SSH)
+	- 22 (SSH) - TCP
 
 # Launch
 

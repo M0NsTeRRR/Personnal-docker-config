@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   grafana:
-    image: grafana/grafana:6.2.1
+    image: grafana/grafana:6.3.3
     container_name: grafana
     restart: always
     labels:
@@ -18,7 +18,7 @@ services:
       - traefik.backend.healthcheck.intervals=10s
     volumes:
       - ./monitoring/grafana/provisioning/:/etc/grafana/provisioning/
-      - ./monitoring/grafana/provisioning/dashboards/:/var/lib/grafana/dashboards
+      - ./monitoring/grafana/dashboards/:/var/lib/grafana/dashboards
     networks:
       - proxy
       - web
@@ -27,7 +27,7 @@ services:
       - ./monitoring/grafana/prod.env
 
   prometheus:
-    image: prom/prometheus:v2.10.0
+    image: prom/prometheus:v2.11.2
     container_name: prometheus
     restart: always
     volumes:
@@ -52,14 +52,14 @@ services:
       - monitoring
 
   redis:
-    image: redis:5.0.5-alpine3.9
+    image: redis:5.0.5-alpine3.10
     container_name: redis
     restart: always
     networks:
       - monitoring
 
   influxdb:
-    image: influxdb:1.7.6
+    image: influxdb:1.7.7
     container_name: influxdb
     restart: always
     ports:
