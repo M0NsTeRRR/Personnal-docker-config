@@ -44,6 +44,7 @@ This is my personnal-docker-config.
 - Monitoring
 	- fill `monitoring/grafana/prod.env` (template : monitoring/grafana/prod.env.example)
 	- fill `monitoring/influxdb/prod.env` (template : monitoring/influxdb/prod.env.example)
+	- fill `monitoring/telegraf/telegraf.conf` (template : monitoring/telegraf/telegraf.conf.example)
 - Log
 	- fill `log/config/prod.env` (template : log/config/prod.env.example)
 - Personnal-website

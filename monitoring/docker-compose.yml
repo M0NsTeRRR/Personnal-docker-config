@@ -71,6 +71,17 @@ services:
       - monitoring
     env_file:
       - ./monitoring/influxdb/prod.env
+  
+  telegraf:
+    image: nuntz/telegraf-snmp
+    container_name: telegraf
+    command: sh -c "download-mibs && service telegraf start"
+    restart: always
+    volumes:
+      - ./monitoring/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf
+      - ./monitoring/telegraf/mibs:/usr/share/snmp/mibs
+    networks:
+      - monitoring
 
 
 networks:
