@@ -1,52 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_PROXMOX",
-      "label": "Proxmox",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "influxdb",
-      "pluginName": "InfluxDB"
-    }
-  ],
-  "__requires": [
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "6.1.3"
-    },
-    {
-      "type": "panel",
-      "id": "grafana-clock-panel",
-      "name": "Clock",
-      "version": "1.0.2"
-    },
-    {
-      "type": "panel",
-      "id": "graph",
-      "name": "Graph",
-      "version": ""
-    },
-    {
-      "type": "datasource",
-      "id": "influxdb",
-      "name": "InfluxDB",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "singlestat",
-      "name": "Singlestat",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "table",
-      "name": "Table",
-      "version": ""
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -60,11 +12,11 @@
       }
     ]
   },
+  "description": "Display data from the Proxmox host and hosted VM's and Containers.",
   "editable": true,
   "gnetId": 10048,
   "graphTooltip": 0,
-  "id": null,
-  "iteration": 1555270774484,
+  "iteration": 1565954524355,
   "links": [],
   "panels": [
     {
@@ -121,6 +73,7 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
+      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -222,6 +175,7 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
+      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -323,6 +277,7 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
+      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -426,6 +381,7 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
+      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -547,6 +503,7 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
+      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -668,6 +625,7 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
+      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -789,6 +747,7 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
+      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -899,6 +858,7 @@
       "mode": "time",
       "offsetFromUtc": null,
       "offsetFromUtcMinutes": null,
+      "options": {},
       "refreshSettings": {
         "syncWithDashboard": false
       },
@@ -946,6 +906,13 @@
         "fontWeight": "normal"
       },
       "timeShift": null,
+      "timezone": null,
+      "timezoneSettings": {
+        "fontSize": "12px",
+        "fontWeight": "normal",
+        "showTimezone": false,
+        "zoneFormat": "offsetAbbv"
+      },
       "title": "Time",
       "transparent": true,
       "type": "grafana-clock-panel"
@@ -991,6 +958,7 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
+      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -1111,6 +1079,7 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
+      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -1189,6 +1158,7 @@
       "id": 7,
       "interval": "",
       "links": [],
+      "options": {},
       "pageSize": null,
       "scroll": true,
       "showHeader": true,
@@ -1324,6 +1294,7 @@
       "id": 8,
       "interval": "",
       "links": [],
+      "options": {},
       "pageSize": null,
       "scroll": true,
       "showHeader": true,
@@ -1447,6 +1418,41 @@
       "type": "row"
     },
     {
+      "alert": {
+        "alertRuleTags": {},
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                90
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "A",
+                "5m",
+                "now"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "last"
+            },
+            "type": "query"
+          }
+        ],
+        "executionErrorState": "alerting",
+        "for": "5m",
+        "frequency": "1m",
+        "handler": 1,
+        "name": "Host CPU Usage alert",
+        "noDataState": "no_data",
+        "notifications": []
+      },
       "aliasColors": {
         "I/O Wait": "dark-blue",
         "Load Average (1 Min)": "dark-red"
@@ -1456,6 +1462,7 @@
       "dashes": false,
       "datasource": "InfluxDB",
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 7,
         "w": 12,
@@ -1479,6 +1486,9 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 2,
       "points": false,
@@ -1635,7 +1645,15 @@
           ]
         }
       ],
-      "thresholds": [],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "fill": true,
+          "line": true,
+          "op": "gt",
+          "value": 90
+        }
+      ],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
@@ -1679,12 +1697,48 @@
       }
     },
     {
+      "alert": {
+        "alertRuleTags": {},
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                90
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "A",
+                "5m",
+                "now"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "last"
+            },
+            "type": "query"
+          }
+        ],
+        "executionErrorState": "alerting",
+        "for": "5m",
+        "frequency": "1m",
+        "handler": 1,
+        "name": "Host Memory Usage alert",
+        "noDataState": "no_data",
+        "notifications": []
+      },
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
       "datasource": "InfluxDB",
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 7,
         "w": 12,
@@ -1708,6 +1762,9 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 2,
       "points": false,
@@ -1763,7 +1820,15 @@
           ]
         }
       ],
-      "thresholds": [],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "fill": true,
+          "line": true,
+          "op": "gt",
+          "value": 90
+        }
+      ],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
@@ -1806,6 +1871,41 @@
       }
     },
     {
+      "alert": {
+        "alertRuleTags": {},
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                90
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "A",
+                "5m",
+                "now"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "last"
+            },
+            "type": "query"
+          }
+        ],
+        "executionErrorState": "alerting",
+        "for": "5m",
+        "frequency": "1m",
+        "handler": 1,
+        "name": "VM CPU Usage alert",
+        "noDataState": "no_data",
+        "notifications": []
+      },
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -1813,6 +1913,7 @@
       "datasource": "InfluxDB",
       "decimals": 2,
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 6,
         "w": 12,
@@ -1838,6 +1939,9 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 2,
       "points": false,
@@ -1905,7 +2009,15 @@
           ]
         }
       ],
-      "thresholds": [],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "fill": true,
+          "line": true,
+          "op": "gt",
+          "value": 90
+        }
+      ],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
@@ -1948,12 +2060,48 @@
       }
     },
     {
+      "alert": {
+        "alertRuleTags": {},
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                99
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "A",
+                "5m",
+                "now"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "last"
+            },
+            "type": "query"
+          }
+        ],
+        "executionErrorState": "alerting",
+        "for": "5m",
+        "frequency": "1m",
+        "handler": 1,
+        "name": "VMs Memory Usage alert",
+        "noDataState": "no_data",
+        "notifications": []
+      },
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
       "datasource": "InfluxDB",
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 6,
         "w": 12,
@@ -1978,6 +2126,9 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 2,
       "points": false,
@@ -2039,7 +2190,15 @@
           ]
         }
       ],
-      "thresholds": [],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "fill": true,
+          "line": true,
+          "op": "gt",
+          "value": 99
+        }
+      ],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
@@ -2088,6 +2247,7 @@
       "datasource": "InfluxDB",
       "decimals": 2,
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 6,
         "w": 12,
@@ -2113,6 +2273,9 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 2,
       "points": false,
@@ -2229,6 +2392,7 @@
       "dashes": false,
       "datasource": "InfluxDB",
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 6,
         "w": 12,
@@ -2253,6 +2417,9 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 2,
       "points": false,
@@ -2375,6 +2542,7 @@
       "dashes": false,
       "datasource": "InfluxDB",
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 6,
         "w": 12,
@@ -2399,6 +2567,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 2,
       "points": false,
@@ -2518,6 +2689,7 @@
       "dashes": false,
       "datasource": "InfluxDB",
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 6,
         "w": 12,
@@ -2542,6 +2714,9 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 2,
       "points": false,
@@ -2661,6 +2836,7 @@
       "dashes": false,
       "datasource": "InfluxDB",
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 6,
         "w": 12,
@@ -2685,6 +2861,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 2,
       "points": false,
@@ -2804,6 +2983,7 @@
       "dashes": false,
       "datasource": "InfluxDB",
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 6,
         "w": 12,
@@ -2828,6 +3008,9 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 2,
       "points": false,
@@ -2960,6 +3143,7 @@
       "dashes": false,
       "datasource": "InfluxDB",
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 6,
         "w": 12,
@@ -2981,6 +3165,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 2,
       "points": false,
@@ -3157,6 +3344,7 @@
       "dashes": false,
       "datasource": "InfluxDB",
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 6,
         "w": 12,
@@ -3178,6 +3366,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 2,
       "points": false,
@@ -3346,6 +3537,7 @@
       "dashes": false,
       "datasource": "InfluxDB",
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 6,
         "w": 12,
@@ -3371,6 +3563,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 2,
       "points": false,
@@ -3490,6 +3685,7 @@
       "dashes": false,
       "datasource": "InfluxDB",
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 6,
         "w": 12,
@@ -3515,6 +3711,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 2,
       "points": false,
@@ -3634,6 +3833,7 @@
       "dashes": false,
       "datasource": "InfluxDB",
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 6,
         "w": 12,
@@ -3659,6 +3859,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 2,
       "points": false,
@@ -3778,6 +3981,7 @@
       "dashes": false,
       "datasource": "InfluxDB",
       "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
         "h": 6,
         "w": 12,
@@ -3803,6 +4007,9 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
       "percentage": false,
       "pointradius": 2,
       "points": false,
@@ -3969,6 +4176,7 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
+      "options": {},
       "pluginVersion": "6.1.3",
       "postfix": "",
       "postfixFontSize": "50%",
@@ -4084,6 +4292,7 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
+      "options": {},
       "pluginVersion": "6.1.3",
       "postfix": "",
       "postfixFontSize": "50%",
@@ -4199,6 +4408,7 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
+      "options": {},
       "pluginVersion": "6.1.3",
       "postfix": "",
       "postfixFontSize": "50%",
@@ -4275,7 +4485,7 @@
     }
   ],
   "refresh": "15m",
-  "schemaVersion": 18,
+  "schemaVersion": 19,
   "style": "dark",
   "tags": [
     "proxmox",
@@ -4285,7 +4495,10 @@
     "list": [
       {
         "allValue": null,
-        "current": {},
+        "current": {
+          "text": "pve",
+          "value": "pve"
+        },
         "datasource": "InfluxDB",
         "definition": "SHOW TAG VALUES FROM system WITH KEY=host WHERE object='nodes'",
         "hide": 0,
@@ -4339,6 +4552,5 @@
   "timezone": "",
   "title": "Proxmox",
   "uid": "kxQQuHRZk",
-  "version": 32,
-  "description": "Display data from the Proxmox host and hosted VM's and Containers."
+  "version": 2
 }
