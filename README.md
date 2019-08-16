@@ -37,7 +37,7 @@ This is my personnal-docker-config.
 - Automation : Ansible AWX (https://automation.adminafk.fr)
 - Status : Cachet (https://status.adminafk.fr)
 - Dns-update : homemade [Github repository link](https://github.com/M0NsTeRRR/DNSUpdateOVH)
-- Wifi controller : Unifi [LAN] **incoming**
+- Wifi controller : Unifi [LAN] (http://192.168.0.102/)
 
 # Configuration
 
@@ -55,12 +55,15 @@ This is my personnal-docker-config.
 	- remove http/https binded ports on `nginx-mailcow` container `nano docker-compose.yml`
 	- generate configuration file `chmod +x generate_config.sh && ./generate_config.sh` (hostname = mail.adminafk.fr)
 	- edit `nano mailcow.conf` with `SKIP_LETS_ENCRYPT=y`
+	- finish Mail-server install `https://wiki.adminafk.fr/` (default: admin/moohoo)
 - Wiki
 	- fill `wiki/config/prod.env` (template : wiki/config/prod.env.example)
 	- fill `wiki/config/prod_db.env` (template : wiki/config/prod_db.env.example)
+	- finish Wiki install `https://wiki.adminafk.fr/` (default: admin@admin.com/password)
 - Git
 	- fill `git/config/prod.env` (template : git/config/prod.env.example)
 	- fill `git/config/prod_db.env` (template : git/config/prod_db.env.example)
+	- finish Git install `https://git.adminafk.fr/install`
 - Automation
 	- `git clone https://github.com/ansible/awx.git automation`
 	- generate a secret key `openssl rand -hex 32`
@@ -109,8 +112,14 @@ This is my personnal-docker-config.
 		- `traefik.backend.healthcheck.hostname=status.adminafk.fr`
       	- `traefik.backend.healthcheck.path=/`
       	- `traefik.backend.healthcheck.intervals=10s`
+	- finish Status install `https://status.adminafk.fr/setup`
 - Dns-update
 	- fill `dns-update/config/prod.env` (template : dns-update/config/prod.env.example)
+
+- Wifi controller
+	- Go on `http://192.168.0.102/` (default : ubnt/ubnt)
+	- In `Settings > Controller > Controller Settings` set controller IP with `192.168.0.102` and set mail server config
+	- In `Settings > Services > SNMP` enable SNMP v1 and set config
 
 # Exposed ports
 
@@ -127,19 +136,12 @@ This is my personnal-docker-config.
 	- 995 (POP3S - Dovecot) - TCP
 	- 4190 (ManageSieve - Dovecot) - TCP
 - Git
-	- 22 (SSH) - TCP
+	- 222 (SSH) - TCP
 
 # Launch
 
 - Setup : `chmod +x setup.sh && ./setup.sh`
 - Start everything (no mailcow) : `./start.sh`
-- Start mailcow : `cd mail-server/mailcow-dockerized/ && docker-compose up -d && cd ../..`
-
-# Usage
-- Finish Git install `https://git.adminafk.fr/install`
-- Finish Wiki install `https://wiki.adminafk.fr/` (default: admin@admin.com/password)
-- Finish Mail-server install `https://wiki.adminafk.fr/` (default: admin/moohoo)
-- Finish Status install `https://status.adminafk.fr/setup`
 
 # Credits
 

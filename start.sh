@@ -31,3 +31,11 @@ docker-compose \
 -f log/docker-compose.yml \
 up \
 -d
+
+# wifi-controller
+docker-compose \
+-p personnal-docker-config \
+--project-directory . \
+-f wifi-controller/docker-compose.yml \
+up \
+-d
