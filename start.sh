@@ -19,8 +19,7 @@ up \
 cd mail-server/mailcow-dockerized/
 docker-compose \
 -p personnal-docker-config \
---project-directory ../.. \
--f docker-compose.yml \
+--project-directory . \
 up \
 -d
 cd ../..

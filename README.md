@@ -51,7 +51,7 @@ This is my personnal-docker-config.
 - Mail-server
 	- `umask 022`
 	- `git clone https://github.com/mailcow/mailcow-dockerized`
-	- `mv docker-compose.override.yml mailcow-dockerized/ && cd mailcow-dockerized/`
+	- `cp docker-compose.override.yml mailcow-dockerized/ && cd mailcow-dockerized/`
 	- remove http/https binded ports on `nginx-mailcow` container `nano docker-compose.yml`
 	- generate configuration file `chmod +x generate_config.sh && ./generate_config.sh` (hostname = mail.adminafk.fr)
 	- edit `nano mailcow.conf` with `SKIP_LETS_ENCRYPT=y`
