@@ -68,6 +68,13 @@ This is my personnal-docker-config.
 	- generate configuration file `chmod +x generate_config.sh && ./generate_config.sh` (hostname = mail.adminafk.fr)
 	- edit `nano mailcow.conf` with `SKIP_LETS_ENCRYPT=y`
 	- finish Mail-server install `https://wiki.adminafk.fr/` (default: admin/moohoo)
+	- Create this emails : 
+		- admin@adminafk.fr
+		- contact@adminafk.fr
+		- ludovic-ortega@adminafk.fr
+		- monitoring@adminafk.fr
+		- noreply@adminafk.fr
+		- wifi@adminafk.fr
 - Wiki
 	- fill `wiki/config/prod.env` (template : wiki/config/prod.env.example)
 	- fill `wiki/config/prod_db.env` (template : wiki/config/prod_db.env.example)
