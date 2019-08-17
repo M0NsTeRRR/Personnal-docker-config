@@ -43,8 +43,19 @@ This is my personnal-docker-config.
 
 - Monitoring
 	- fill `monitoring/grafana/prod.env` (template : monitoring/grafana/prod.env.example)
+	- fill `monitoring/grafana/provisionning/default.yaml` (template : monitoring/grafana/provisionning/default.yaml.example)
 	- fill `monitoring/influxdb/prod.env` (template : monitoring/influxdb/prod.env.example)
-	- fill `monitoring/telegraf/telegraf.conf` (template : monitoring/telegraf/telegraf.conf.example)
+	- fill `monitoring/unifi-poller/up.conf` (template : monitoring/unifi-poller/up.conf.example)
+	- Create database on InfluxDB
+		```
+		docker exec -it influxdb /bin/sh
+		influx -host localhost -port 8086
+		CREATE DATABASE unifi
+		CREATE USER unifi WITH PASSWORD 'unifi'
+		GRANT WRITE ON unifi TO unifi
+		CREATE USER grafana WITH PASSWORD 'unifi'
+		GRANT READ ON unifi TO grafana
+		```
 - Log
 	- fill `log/config/prod.env` (template : log/config/prod.env.example)
 - Personnal-website
@@ -120,7 +131,13 @@ This is my personnal-docker-config.
 - Wifi controller
 	- Go on `http://192.168.0.102/` (default : ubnt/ubnt)
 	- In `Settings > Controller > Controller Settings` set controller IP with `192.168.0.102` and set mail server config
-	- In `Settings > Services > SNMP` enable SNMP v1 and set config
+	- In `Settings > Admins` create an user `influxdb` to monitor Unifi
+	- To adopt a new UAP, adopt it on the webpanel and
+		```
+		ssh ubnt@$AP-IP
+		mca-cli
+		set-inform http://$address:8080/inform
+		```
 
 # Exposed ports
 
