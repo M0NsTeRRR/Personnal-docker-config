@@ -23,6 +23,7 @@ services:
       - ./personnal-website/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
       - frontend_static:/opt/services/frontend/static
       - backend_static:/opt/services/backend/static
+      - backend_media:/opt/services/backend/media
     networks:
       - proxy
       - personnal-website
@@ -43,12 +44,15 @@ services:
       && python3 manage.py migrate
       && python3 manage.py collectstatic --no-input
       && mkdir -p /opt/services/backend/static/
+      && mkdir -p /opt/services/backend/media/
       && mv ./static/* /opt/services/backend/static/
+      && mv ./media/* /opt/services/backend/media/
       && gunicorn config.wsgi:application --bind 0.0.0.0:8000"
     container_name: personnal-website-backend
     restart: always
     volumes:
       - backend_static:/opt/services/backend/static
+      - backend_media:/opt/services/backend/media
     networks:
       - personnal-website
     env_file:
@@ -67,3 +71,4 @@ networks:
 volumes:
   frontend_static:
   backend_static:
+  backend_media:
