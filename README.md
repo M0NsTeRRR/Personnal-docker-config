@@ -43,7 +43,7 @@ This is my personnal-docker-config.
 
 - Monitoring
 	- fill `monitoring/grafana/prod.env` (template : monitoring/grafana/prod.env.example)
-	- fill `monitoring/grafana/provisionning/default.yaml` (template : monitoring/grafana/provisionning/default.yaml.example)
+	- fill `monitoring/grafana/provisioning/datasources/default.yaml` (template : monitoring/grafana/provisioning/datasources/default.yaml.example)
 	- fill `monitoring/influxdb/prod.env` (template : monitoring/influxdb/prod.env.example)
 	- fill `monitoring/unifi-poller/up.conf` (template : monitoring/unifi-poller/up.conf.example)
 	- Create database on InfluxDB
@@ -61,13 +61,13 @@ This is my personnal-docker-config.
 - Personnal-website
 	- fill `personnal-website/backend/prod.env` (template : personnal-website/backend/prod.env.example)
 - Mail-server
-	- `umask 022`
+	- `cd mail-server && umask 022`
 	- `git clone https://github.com/mailcow/mailcow-dockerized`
 	- `cp docker-compose.override.yml mailcow-dockerized/ && cd mailcow-dockerized/`
 	- remove http/https binded ports on `nginx-mailcow` container `nano docker-compose.yml`
 	- generate configuration file `chmod +x generate_config.sh && ./generate_config.sh` (hostname = mail.adminafk.fr)
 	- edit `nano mailcow.conf` with `SKIP_LETS_ENCRYPT=y`
-	- finish Mail-server install `https://wiki.adminafk.fr/` (default: admin/moohoo)
+	- finish Mail-server install `https://mail.adminafk.fr/` (default: admin/moohoo)
 	- Create this emails : 
 		- admin@adminafk.fr
 		- contact@adminafk.fr
