@@ -38,7 +38,7 @@ This is my personnal-docker-config.
 - Automation : Ansible AWX (https://automation.adminafk.fr)
 - Status : Cachet (https://status.adminafk.fr)
 - Dns-update : homemade [Github repository link](https://github.com/M0NsTeRRR/DNSUpdateOVH)
-- Wifi controller : Unifi [LAN] (http://192.168.0.102/)
+- Wifi controller : Unifi [LAN] (http://192.168.10.51:8443/)
 
 # Configuration
 
@@ -52,9 +52,9 @@ This is my personnal-docker-config.
 		docker exec -it influxdb /bin/sh
 		influx -host localhost -port 8086
 		CREATE DATABASE unifi
-		CREATE USER unifi WITH PASSWORD 'unifi'
+		CREATE USER unifi WITH PASSWORD 'MyAwesomePassword'
 		GRANT WRITE ON unifi TO unifi
-		CREATE USER grafana WITH PASSWORD 'unifi'
+		CREATE USER grafana WITH PASSWORD 'MyAwesomePassword'
 		GRANT READ ON unifi TO grafana
 		```
 - Log
@@ -137,8 +137,8 @@ This is my personnal-docker-config.
 	- fill `dns-update/config/prod.env` (template : dns-update/config/prod.env.example)
 
 - Wifi controller
-	- Go on `http://192.168.0.102/` (default : ubnt/ubnt)
-	- In `Settings > Controller > Controller Settings` set controller IP with `192.168.0.102` and set mail server config
+	- Go on `http://192.168.10.51:8443/` (default : ubnt/ubnt)
+	- In `Settings > Controller > Controller Settings` set controller IP with `192.168.10.51` and set mail server config
 	- In `Settings > Admins` create an user `influxdb` to monitor Unifi
 	- To adopt a new UAP, adopt it on the webpanel and
 		```
