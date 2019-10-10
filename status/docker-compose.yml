@@ -30,18 +30,18 @@ services:
       - DB_DRIVER=pgsql
       - DB_HOST=cachet_db
       - DB_PORT=5432
-      - DB_DATABASE=
-      - DB_USERNAME=
+      - DB_DATABASE=postgres
+      - DB_USERNAME=postgres
       - DB_PASSWORD=
       - DB_PREFIX=chq_
       - SESSION_DRIVER=file
       - SESSION_DOMAIN=status.adminafk.fr
       - MAIL_DRIVER=smtp
       - MAIL_HOST=adminafk.fr
-      - MAIL_PORT=465
+      - MAIL_PORT=587
       - MAIL_USERNAME=contact@adminafk.fr
       - MAIL_ADDRESS=contact@adminafk.fr
-      - MAIL_ENCRYPTION=ssl
+      - MAIL_ENCRYPTION=tls
 
   cachet_db:
     image: postgres:9.5
@@ -52,7 +52,7 @@ services:
     networks:
       - status
     environment:
-      - POSTGRES_USER=
+      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=
 
 
