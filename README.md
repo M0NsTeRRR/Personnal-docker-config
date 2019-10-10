@@ -17,10 +17,11 @@ This is my personnal-docker-config.
 
 # Requirements
 
-- Docker compose with **Docker Engine >= 18.06.0+**
+- Docker with **Docker Engine >= 18.06.0+**
 
-- Automation
-	- Ansible
+- Docker-compose
+
+- Ansible
 
 # Description
 
@@ -89,7 +90,7 @@ This is my personnal-docker-config.
 	- edit `nano automation/installer/inventory` :
 		- host_port=8000
 		- admin_password=myAwesomePassword
-		- docker_compose_dir=/app/Personnal-docker-config/automation/
+		- docker_compose_dir="/app/Personnal-docker-config/automation/"
 		- secret_key=<YOUR_SECRET>
 	- build `cd automation/installer && ansible-playbook -i inventory install.yml && cd ../..`
 	- when build is ended (docker logs -f awx_task) update `automation/docker-compose.yml` with the following :
