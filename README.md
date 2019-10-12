@@ -74,6 +74,7 @@ This is my personnal-docker-config.
 		- contact@adminafk.fr
 		- ludovic-ortega@adminafk.fr
 		- monitoring@adminafk.fr
+		- git@adminafk.fr
 		- noreply@adminafk.fr
 		- wifi@adminafk.fr
 - Wiki
@@ -137,7 +138,7 @@ This is my personnal-docker-config.
 	- fill `dns-update/config/prod.env` (template : dns-update/config/prod.env.example)
 
 - Wifi controller
-	- Go on `http://192.168.10.51:8443/` (default : ubnt/ubnt)
+	- Go on `http://192.168.10.51:8000/` (default : ubnt/ubnt)
 	- In `Settings > Controller > Controller Settings` set controller IP with `192.168.10.51` and set mail server config
 	- In `Settings > Admins` create an user `influxdb` to monitor Unifi
 	- To adopt a new UAP, adopt it on the webpanel and

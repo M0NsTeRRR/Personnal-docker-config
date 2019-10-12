@@ -48,7 +48,7 @@ influx_db = "unifi"
 unifi_user = "influxdb"
 # You may also set env variable UNIFI_PASSWORD instead of putting this in the config.
 unifi_pass = ""
-unifi_url = "https://192.168.0.102:8443"
+unifi_url = "https://192.168.10.51:8443"
 
 # Enable collection of Intrusion Detection System Data.
 # Only useful if IDS or IPS are enabled on one of the sites.
