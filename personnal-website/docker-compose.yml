@@ -38,21 +38,12 @@ services:
 
   personnal-website-backend:
     image: monsterrr/personnal-website:backend-latest
-    command: >
-      sh -c "rm -rf ./static/* /opt/services/backend/static/*
-      && python3 manage.py makemigrations
-      && python3 manage.py migrate
-      && python3 manage.py collectstatic --no-input
-      && mkdir -p /opt/services/backend/static/
-      && mkdir -p /opt/services/backend/media/
-      && mv ./static/* /opt/services/backend/static/
-      && mv ./media/* /opt/services/backend/media/
-      && gunicorn config.wsgi:application --bind 0.0.0.0:8000"
+    command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
     container_name: personnal-website-backend
     restart: always
     volumes:
-      - backend_static:/opt/services/backend/static
-      - backend_media:/opt/services/backend/media
+      - backend_static:/app/backend/static
+      - backend_media:/app/backend/media
     networks:
       - personnal-website
     env_file:
