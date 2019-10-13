@@ -1,0 +1,34 @@
+version: '3.7'
+services:
+  pastebin:
+    image: privatebin/nginx-fpm-alpine:1.3.1
+    container_name: pastebin
+    restart: always
+    labels:
+      - traefik.backend=pastebin
+      - traefik.frontend.rule=Host:pastebin.adminafk.fr
+      - traefik.docker.network=proxy
+      - traefik.port=80
+      - traefik.enable=true
+      - traefik.frontend.rateLimit.rateSet.standard.period=10
+      - traefik.frontend.rateLimit.rateSet.standard.average=150
+      - traefik.frontend.rateLimit.rateSet.standard.burst=300
+      - traefik.backend.healthcheck.hostname=pastebin.adminafk.fr
+      - traefik.backend.healthcheck.path=/
+      - traefik.backend.healthcheck.intervals=10s
+    volumes:
+      - ./pastebin/config/conf.php:/srv/cfg/conf.php:ro
+      - pastebin:/srv/data
+    networks:
+      - proxy
+
+
+networks:
+  proxy:
+    external:
+      name: proxy
+
+
+
+volumes:
+  pastebin:

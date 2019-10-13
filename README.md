@@ -10,7 +10,8 @@ This is my personnal-docker-config.
 | [Mail-server](https://mail.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783222478-f6ddda399cf297b69f816685?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783222478-f6ddda399cf297b69f816685?style=flat-square)
 | [Wiki](https://wiki.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783222480-fdce5de8f21972139c93fea4?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783222480-fdce5de8f21972139c93fea4?style=flat-square)
 | [Git](https://git.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783222482-af777491dc23d4d5635d4709?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783222482-af777491dc23d4d5635d4709?style=flat-square)
-| [Log](https://board.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783618318-9687b466797fda5af2829c45?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783618318-9687b466797fda5af2829c45?style=flat-square)
+| [Board](https://board.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783618318-9687b466797fda5af2829c45?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783618318-9687b466797fda5af2829c45?style=flat-square)
+| [Pastebin](https://pastebin.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783618481-68d1f15275d076b39c3e83db?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783618481-68d1f15275d076b39c3e83db?style=flat-square)
 | [Automation](https://automation.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783244295-06a98de07a2f800fde0dc32f?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783244295-06a98de07a2f800fde0dc32f?style=flat-square)
 | [Status](https://status.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783222483-561a3c98cf377ede6eac1648?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783222483-561a3c98cf377ede6eac1648?style=flat-square)
 | [Monitoring](https://monitoring.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783222475-0347e46cdbe638245ea6f97b?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783222475-0347e46cdbe638245ea6f97b?style=flat-square)
@@ -39,6 +40,7 @@ This is my personnal-docker-config.
 - Automation : Ansible AWX (https://automation.adminafk.fr)
 - Status : Cachet (https://status.adminafk.fr)
 - Board : Restya (https://board.adminafk.fr)
+- Pastebin : PrivateBin (https://pastebin.adminafk.fr)
 - Dns-update : homemade [Github repository link](https://github.com/M0NsTeRRR/DNSUpdateOVH)
 - Wifi controller : Unifi [LAN] (http://192.168.10.51:8443/)
 

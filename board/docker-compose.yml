@@ -21,7 +21,7 @@ services:
     env_file:
       - ./board/config/prod.env
     volumes:
-    - restyaboard_media:/usr/share/nginx/html/media
+      - restyaboard_media:/usr/share/nginx/html/media
     networks:
       - proxy
       - board
@@ -33,7 +33,7 @@ services:
     env_file:
       - ./board/config/prod_db.env
     volumes:
-    - restyaboard_db_data:/var/lib/postgresql/data
+      - restyaboard_db_data:/var/lib/postgresql/data
     networks:
       - board
 
