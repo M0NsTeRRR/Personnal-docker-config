@@ -1,0 +1,54 @@
+version: '3.7'
+services:
+  restyaboard:
+    image: restyaplatform/restyaboard:dev
+    container_name: restyaboard
+    restart: always
+    depends_on:
+      - restyaboard_db
+    labels:
+      - traefik.backend=board
+      - traefik.frontend.rule=Host:board.adminafk.fr
+      - traefik.docker.network=proxy
+      - traefik.port=80
+      - traefik.enable=true
+      - traefik.frontend.rateLimit.rateSet.standard.period=10
+      - traefik.frontend.rateLimit.rateSet.standard.average=150
+      - traefik.frontend.rateLimit.rateSet.standard.burst=300
+      - traefik.backend.healthcheck.hostname=board.adminafk.fr
+      - traefik.backend.healthcheck.path=/
+      - traefik.backend.healthcheck.intervals=10s
+    env_file:
+      - ./board/config/prod.env
+    volumes:
+    - restyaboard_media:/usr/share/nginx/html/media
+    networks:
+      - proxy
+      - board
+
+  restyaboard_db:
+    image: postgres:9-alpine
+    container_name: restyaboard_db
+    restart: always
+    env_file:
+      - ./board/config/prod_db.env
+    volumes:
+    - restyaboard_db_data:/var/lib/postgresql/data
+    networks:
+      - board
+
+
+networks:
+  proxy:
+    external:
+      name: proxy
+
+  board:
+    external:
+      name: board
+
+
+
+volumes:
+  restyaboard_media:
+  restyaboard_db_data:

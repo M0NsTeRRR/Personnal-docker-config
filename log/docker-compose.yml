@@ -22,7 +22,7 @@ services:
       - ./log/config/prod_elasticsearch.env.static
 
   graylog:
-    image: graylog/graylog:3.0
+    image: graylog/graylog:3.1.2
     container_name: graylog
     restart: always
     depends_on:
