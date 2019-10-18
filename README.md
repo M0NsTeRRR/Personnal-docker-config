@@ -67,7 +67,7 @@ This is my personnal-docker-config.
 	- fill `personnal-website/backend/prod.env` (template : personnal-website/backend/prod.env.example)
 	- start the container and log into it :
 		- Create the database `python3 manage.py makemigrations && python3 manage.py migrate`
-		- Collect static file `python3 collectstatic --no-input`
+		- Collect static file `python3 manage.py collectstatic --no-input`
 - Mail-server
 	- `cd mail-server && umask 022`
 	- `git clone https://github.com/mailcow/mailcow-dockerized`
