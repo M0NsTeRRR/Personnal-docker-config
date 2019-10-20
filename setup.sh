@@ -77,3 +77,10 @@ docker network create \
 --ip-range=172.22.11.0/24 \
 --gateway=172.22.11.254 \
 board
+
+docker network create \
+--driver=bridge \
+--subnet=172.22.12.0/24 \
+--ip-range=172.22.12.0/24 \
+--gateway=172.22.12.254 \
+ipam

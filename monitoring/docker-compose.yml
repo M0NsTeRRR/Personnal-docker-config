@@ -81,6 +81,15 @@ services:
     networks:
       - monitoring
 
+  tplink-smartplug:
+    image: monsterrr/tplink-smartplug-influxdb:latest
+    container_name: tplink-smartplug
+    restart: always
+    networks:
+      - monitoring
+    env_file:
+      - ./monitoring/tplink-smartplug/prod.env
+
 
 networks:
   web:

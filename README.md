@@ -14,6 +14,7 @@ This is my personnal-docker-config.
 | [Pastebin](https://pastebin.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783618481-68d1f15275d076b39c3e83db?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783618481-68d1f15275d076b39c3e83db?style=flat-square)
 | [Automation](https://automation.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783647780-4161de3ae9ac975464bbcd4c?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783647780-4161de3ae9ac975464bbcd4c?style=flat-square)
 | [Status](https://status.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783222483-561a3c98cf377ede6eac1648?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783222483-561a3c98cf377ede6eac1648?style=flat-square)
+| [IPAM](https://ipam.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783653424-388cf36448dd254f016aaeb7?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783653424-388cf36448dd254f016aaeb7?style=flat-square)
 | [Monitoring](https://monitoring.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783222475-0347e46cdbe638245ea6f97b?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783222475-0347e46cdbe638245ea6f97b?style=flat-square)
 | [Log](https://log.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783222476-a0725d897e53a6762add2d31?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783222476-a0725d897e53a6762add2d31?style=flat-square)
 
@@ -41,8 +42,10 @@ This is my personnal-docker-config.
 - Status : Cachet (https://status.adminafk.fr)
 - Board : Restya (https://board.adminafk.fr)
 - Pastebin : PrivateBin (https://pastebin.adminafk.fr)
+- IPAM : Nipap (https://ipam.adminafk.fr)
 - Dns-update : homemade [Github repository link](https://github.com/M0NsTeRRR/DNSUpdateOVH)
-- Wifi controller : Unifi [LAN] (http://192.168.10.51:8443/)
+- Tplink-smartplug : homemade [Github repository link](https://github.com/M0NsTeRRR/tplink-smartplug-influxdb)
+- Wifi controller : Unifi [LAN](http://192.168.10.51:8443/)
 
 # Configuration
 
@@ -145,18 +148,33 @@ This is my personnal-docker-config.
 - Board
 	- fill `board/config/prod.env` (template : board/config/prod.env.example)
 	- fill `board/config/prod_db.env` (template : board/config/prod_db.env.example)
+- IPAM
+	- fill `ipam/config/prod.env` (template : ipam/config/prod.env.example)
+	- fill `ipam/config/prod_db.env` (template : ipam/config/prod_db.env.example)
+	- fill `ipam/config/prod_www.env` (template : ipam/config/prod_www.env.example)
 - Dns-update
 	- fill `dns-update/config/prod.env` (template : dns-update/config/prod.env.example)
-
+- Tplink-smartplug
+	- fill `monitoring/tplink-smartplug/config/prod.env` (template : monitoring/tplink-smartplug/config/prod.env.example)
+	- Create database on InfluxDB
+		```
+		docker exec -it influxdb /bin/sh
+		influx -host localhost -port 8086
+		CREATE DATABASE tplinksmartplug
+		CREATE USER tplinksmartplug WITH PASSWORD 'MyAwesomePassword'
+		GRANT WRITE ON tplinksmartplug TO tplinksmartplug
+		```
 - Wifi controller
 	- Go on `http://192.168.10.51:8000/` (default : ubnt/ubnt)
+	- In `Settings > Site > Services` disable Uplink Connectivity Monitor
 	- In `Settings > Controller > Controller Settings` set controller IP with `192.168.10.51` and set mail server config
 	- In `Settings > Admins` create an user `influxdb` to monitor Unifi
+	- In `Settings > Wireless Networks` add all networks (VLAN 40 without VLAN tag)
 	- To adopt a new UAP, adopt it on the webpanel and
 		```
-		ssh ubnt@$AP-IP
+		ssh ubnt@<IP_UAP>
 		mca-cli
-		set-inform http://$address:8080/inform
+		set-inform http://192.168.10.51:8000/inform
 		```
 
 # Exposed ports

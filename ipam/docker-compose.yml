@@ -1,0 +1,63 @@
+version: '3.7'
+services:  
+  nipap-db:
+    image: nipap/postgres-ip4r:latest
+    container_name: nipap-db
+    restart: always
+    volumes:
+      - nipap_db:/var/lib/postgresql/data
+    env_file:
+      - ./ipam/config/prod_db.env
+    networks:
+      - ipam
+
+  nipapd:
+    image: nipap/nipapd:master
+    container_name: nipapd
+    restart: always
+    depends_on:
+      - nipap-db
+    env_file:
+      - ./ipam/config/prod.env
+    networks:
+      - ipam
+
+  nipap-www:
+    image: nipap/nipap-www:latest
+    container_name: nipap-www
+    restart: always
+    depends_on:
+      - nipapd
+      - nipap-db
+    labels:
+      - traefik.backend=ipam
+      - traefik.frontend.rule=Host:ipam.adminafk.fr
+      - traefik.docker.network=proxy
+      - traefik.port=80
+      - traefik.enable=true
+      - traefik.frontend.rateLimit.rateSet.standard.period=10
+      - traefik.frontend.rateLimit.rateSet.standard.average=150
+      - traefik.frontend.rateLimit.rateSet.standard.burst=300
+      - traefik.backend.healthcheck.hostname=ipam.adminafk.fr
+      - traefik.backend.healthcheck.path=/auth/login
+      - traefik.backend.healthcheck.intervals=10s
+    links:
+      - nipapd
+    env_file:
+      - ./ipam/config/prod_www.env
+    networks:
+      - proxy
+      - ipam
+
+networks:
+  proxy:
+    external:
+      name: proxy
+
+  ipam:
+    external:
+      name: ipam
+
+
+volumes:
+  nipap_db:
