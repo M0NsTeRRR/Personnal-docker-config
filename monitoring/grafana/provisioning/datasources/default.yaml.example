@@ -37,3 +37,13 @@ datasources:
   url: http://influxdb:8086
   jsonData:
     httpMode: GET
+
+- name: Tplinksmartplug
+  type: influxdb
+  access: proxy
+  database: tplinksmartplug
+  user: tplinksmartplug
+  password: 
+  url: http://influxdb:8086
+  jsonData:
+    httpMode: GET
