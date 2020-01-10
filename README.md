@@ -1,3 +1,5 @@
+### [Migration to kubernetes in progress]
+
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/69e259dc570b47b09fcc71b603842863)](https://app.codacy.com/app/M0NsTeRRR/Personnal-docker-config?utm_source=github.com&utm_medium=referral&utm_content=M0NsTeRRR/Personnal-docker-config&utm_campaign=Badge_Grade_Dashboard)
 
 This is my personnal-docker-config.
@@ -88,6 +90,7 @@ This is my personnal-docker-config.
 		- noreply@adminafk.fr
 		- wifi@adminafk.fr
 		- board@adminafk.fr
+		- nas@adminafk.fr
 - Wiki
 	- fill `wiki/config/prod.env` (template : wiki/config/prod.env.example)
 	- fill `wiki/config/prod_db.env` (template : wiki/config/prod_db.env.example)
