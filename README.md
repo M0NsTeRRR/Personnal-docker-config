@@ -177,7 +177,6 @@ This is my personnal-docker-config.
 	- To adopt a new UAP, adopt it on the webpanel and
 		```
 		ssh ubnt@<IP_UAP>
-		mca-cli
 		set-inform http://192.168.10.51:8000/inform
 		```
 - DNS
