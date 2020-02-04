@@ -25,7 +25,15 @@ docker-compose \
 up \
 -d
 
-# mailcow (v2)
+# dns (v2.1)
+docker-compose \
+-p personnal-docker-config \
+--project-directory . \
+-f dns/docker-compose.yml \
+up \
+-d
+
+# mail-server (v2)
 cd mail-server/mailcow-dockerized/
 docker-compose \
 -p personnal-docker-config \

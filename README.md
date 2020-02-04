@@ -48,6 +48,7 @@ This is my personnal-docker-config.
 - Dns-update : homemade [Github repository link](https://github.com/M0NsTeRRR/DNSUpdateOVH)
 - Tplink-smartplug : homemade [Github repository link](https://github.com/M0NsTeRRR/tplink-smartplug-influxdb)
 - Wifi controller : Unifi [LAN](http://192.168.10.51:8443/)
+- DNS : PowerDNS [LAN](http://192.168.10.51:9191/)
 
 # Configuration
 
@@ -179,6 +180,11 @@ This is my personnal-docker-config.
 		mca-cli
 		set-inform http://192.168.10.51:8000/inform
 		```
+- DNS
+	- fill `dns/config/prod_pdns-postgresql.env` (template : dns/config/prod_pdns-postgresql.env.example)
+	- fill `dns/config/prod_pdns-server.env` (template : dns/config/prod_pdns-server.env.example)
+	- fill `dns/config/prod_powerdns-admin-postgresql.env` (template : dns/config/prod_powerdns-admin-postgresql.env.example)
+	- fill `dns/config/prod_powerdns-admin.env` (template : dns/config/prod_powerdns-admin.env.example)	
 
 # Exposed ports
 
