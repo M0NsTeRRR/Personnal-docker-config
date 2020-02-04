@@ -5,6 +5,7 @@ services:
     image: monogramm/docker-powerdns-admin:0.2
     hostname: powerdns-admin
     container_name: powerdns-admin
+    restart: always
     mem_limit: 256M
     memswap_limit: 256M
     ports:
@@ -48,8 +49,8 @@ services:
     container_name: pdns-server
     restart: always
     ports:
-      - "5053:53"
-      - "5053:53/udp"
+      - "53:53"
+      - "53:53/udp"
     networks:
       - dns
     env_file:
