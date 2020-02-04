@@ -1,0 +1,91 @@
+version: "2.1"
+
+services:
+  powerdns-admin:
+    image: monogramm/docker-powerdns-admin:0.2
+    hostname: powerdns-admin
+    container_name: powerdns-admin
+    mem_limit: 256M
+    memswap_limit: 256M
+    ports:
+      - "9191:80"
+    volumes:
+      - powerdns-admin-upload:/var/www/powerdns-admin/upload
+      - powerdns-admin-logs:/var/www/powerdns-admin/logs
+      - powerdns-admin-db:/var/www/powerdns-admin/db
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    logging:
+      driver: json-file
+      options:
+        max-size: 50m
+    networks:
+      - dns
+    env_file:
+      - ./dns/config/prod_powerdns-admin.env
+    # PostgreSQL
+    depends_on:
+      - powerdns-admin-postgresql
+
+  # PostgreSQL
+  powerdns-admin-postgresql:
+    image: postgres:10-alpine
+    hostname: powerdns-admin-postgresql
+    container_name: powerdns-admin-postgresql
+    restart: always
+    networks:
+      - dns
+    volumes:
+      - powerdns-admin-postgresql-data:/var/lib/postgresql/data
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    env_file:
+      - ./dns/config/prod_powerdns-admin-postgresql.env
+
+  pdns-server:
+    image: monogramm/docker-powerdns:develop
+    hostname: pdns-server
+    container_name: pdns-server
+    restart: always
+    ports:
+      - "5053:53"
+      - "5053:53/udp"
+    networks:
+      - dns
+    env_file:
+      - ./dns/config/prod_pdns-server.env
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+    # PostgreSQL
+    depends_on:
+      - pdns-postgresql
+
+  pdns-postgresql:
+    image: postgres:10-alpine
+    hostname: pdns-postgresql
+    container_name: pdns-postgresql
+    restart: always
+    networks:
+      - dns
+    env_file:
+      - ./dns/config/prod_pdns-postgresql.env
+    volumes:
+      - powerdns-postgresql-data:/var/lib/postgresql/data
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+
+
+networks:
+  dns:
+    external:
+      name: dns
+
+
+volumes:
+  powerdns-admin-upload:
+  powerdns-admin-logs:
+  powerdns-admin-db:
+  # PostgreSQL
+  powerdns-admin-postgresql-data:
+  powerdns-postgresql-data:
