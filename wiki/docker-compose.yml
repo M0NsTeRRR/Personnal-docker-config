@@ -1,17 +1,18 @@
+
 version: '3.7'
 services:
-  bookstack:
-    image: linuxserver/bookstack:latest
-    container_name: bookstack
+  wikijs:
+    image: requarks/wiki:2
+    container_name: wikijs
     restart: always
     depends_on:
-      - bookstack_db
+      - wikijs_db
     labels:
       - traefik.backend=wiki
       - traefik.frontend.rule=Host:wiki.adminafk.fr
       - traefik.docker.network=proxy
-      - traefik.port=443
-      - traefik.protocol=https
+      - traefik.port=3000
+      - traefik.protocol=http
       - traefik.enable=true
       - traefik.frontend.rateLimit.rateSet.standard.period=10
       - traefik.frontend.rateLimit.rateSet.standard.average=150
@@ -25,14 +26,18 @@ services:
     env_file:
         - ./wiki/config/prod.env
 
-  bookstack_db:
-    image: linuxserver/mariadb
-    container_name: bookstack_db
+  wikijs_db:
+    image: postgres:11-alpine
+    container_name: wikijs_db
     restart: always
     networks:
       - wiki
     env_file:
-        - ./wiki/config/prod_db.env
+      - ./wiki/config/prod_db.env
+    logging:
+      driver: "none"
+    volumes:
+      - db-data:/var/lib/postgresql/data
 
 
 networks:
@@ -43,3 +48,7 @@ networks:
   wiki:
     external:
       name: wiki
+
+
+volumes:
+  db-data:

@@ -38,7 +38,7 @@ This is my personnal-docker-config.
 	- frontend : [Github repository link](https://github.com/M0NsTeRRR/Personnal-website/tree/master/frontend)
 	- backend : [Github repository link](https://github.com/M0NsTeRRR/Personnal-website/tree/master/backend)
 - Mail-server : Mailcow (https://mail.adminafk.fr)
-- Wiki : Bookstack (https://wiki.adminafk.fr)
+- Wiki : Wiki.js (https://wiki.adminafk.fr)
 - Git : Gitea (https://git.adminafk.fr)
 - Automation : Ansible AWX (https://automation.adminafk.fr)
 - Status : Cachet (https://status.adminafk.fr)
@@ -95,7 +95,7 @@ This is my personnal-docker-config.
 - Wiki
 	- fill `wiki/config/prod.env` (template : wiki/config/prod.env.example)
 	- fill `wiki/config/prod_db.env` (template : wiki/config/prod_db.env.example)
-	- finish Wiki install `https://wiki.adminafk.fr/` (default: admin@admin.com/password)
+	- finish Wiki install `https://wiki.adminafk.fr/` 
 - Git
 	- fill `git/config/prod.env` (template : git/config/prod.env.example)
 	- fill `git/config/prod_db.env` (template : git/config/prod_db.env.example)
