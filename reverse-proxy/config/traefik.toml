@@ -2,8 +2,6 @@ debug = false
 
 logLevel = "ERROR"
 
-insecureSkipVerify = true # bookstack certificate
-
 defaultEntryPoints = ["https","http"]
 
 [entryPoints]
