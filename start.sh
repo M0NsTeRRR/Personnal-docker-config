@@ -13,6 +13,7 @@ docker-compose \
 -f board/docker-compose.yml \
 -f dns-update/docker-compose.yml \
 -f ipam/docker-compose.yml \
+-f apt-cache/docker-compose.yml \
 up \
 -d
 

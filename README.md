@@ -49,6 +49,7 @@ This is my personnal-docker-config.
 - Tplink-smartplug : homemade [Github repository link](https://github.com/M0NsTeRRR/tplink-smartplug-influxdb)
 - Wifi controller : Unifi [LAN](http://192.168.10.51:8443/)
 - DNS : PowerDNS [LAN](http://192.168.10.51:9191/)
+- Apt cache : apt-cacher-ng [LAN](http://192.168.10.51:3142/)
 
 # Configuration
 
@@ -92,6 +93,7 @@ This is my personnal-docker-config.
 		- wifi@adminafk.fr
 		- board@adminafk.fr
 		- nas@adminafk.fr
+		- wiki@adminafk.fr
 - Wiki
 	- fill `wiki/config/prod.env` (template : wiki/config/prod.env.example)
 	- fill `wiki/config/prod_db.env` (template : wiki/config/prod_db.env.example)
