@@ -22,7 +22,7 @@ services:
       - ./log/config/prod_elasticsearch.env.static
 
   graylog:
-    image: graylog/graylog:3.1.2
+    image: graylog/graylog:3.1.3
     container_name: graylog
     restart: always
     depends_on:
@@ -41,8 +41,8 @@ services:
       - traefik.backend.healthcheck.path=/
       - traefik.backend.healthcheck.intervals=10s
     ports:
-      - 1514:1514
-      - 1514:1514/udp
+      - 514:1514
+      - 514:1514/udp
       - 12201:12201
       - 12201:12201/udp
     networks:
