@@ -1,24 +1,6 @@
-### [Migration to kubernetes in progress]
-
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/69e259dc570b47b09fcc71b603842863)](https://app.codacy.com/app/M0NsTeRRR/Personnal-docker-config?utm_source=github.com&utm_medium=referral&utm_content=M0NsTeRRR/Personnal-docker-config&utm_campaign=Badge_Grade_Dashboard)
+### This project has been replaced by -> https://github.com/M0NsTeRRR/Homelab-infra
 
 This is my personnal-docker-config.
-
-# Status
-
-| Websites        | Status           | Uptime  |
-| ------------- |:-------------:| -----:|
-| [Personnal-website](https://ludovic-ortega.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783222469-12d94c11dba41aed46ce378f?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783222469-12d94c11dba41aed46ce378f?style=flat-square)
-| [Mail-server](https://mail.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783222478-f6ddda399cf297b69f816685?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783222478-f6ddda399cf297b69f816685?style=flat-square)
-| [Wiki](https://wiki.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783222480-fdce5de8f21972139c93fea4?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783222480-fdce5de8f21972139c93fea4?style=flat-square)
-| [Git](https://git.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783222482-af777491dc23d4d5635d4709?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783222482-af777491dc23d4d5635d4709?style=flat-square)
-| [Board](https://board.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783618318-9687b466797fda5af2829c45?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783618318-9687b466797fda5af2829c45?style=flat-square)
-| [Pastebin](https://pastebin.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783618481-68d1f15275d076b39c3e83db?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783618481-68d1f15275d076b39c3e83db?style=flat-square)
-| [Automation](https://automation.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783647780-4161de3ae9ac975464bbcd4c?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783647780-4161de3ae9ac975464bbcd4c?style=flat-square)
-| [Status](https://status.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783222483-561a3c98cf377ede6eac1648?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783222483-561a3c98cf377ede6eac1648?style=flat-square)
-| [IPAM](https://ipam.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783653424-388cf36448dd254f016aaeb7?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783653424-388cf36448dd254f016aaeb7?style=flat-square)
-| [Monitoring](https://monitoring.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783222475-0347e46cdbe638245ea6f97b?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783222475-0347e46cdbe638245ea6f97b?style=flat-square)
-| [Log](https://log.adminafk.fr) | ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m783222476-a0725d897e53a6762add2d31?style=flat-square) | ![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m783222476-a0725d897e53a6762add2d31?style=flat-square)
 
 # Requirements
 
